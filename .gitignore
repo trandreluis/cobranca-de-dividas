@@ -1,5 +1,20 @@
+<<<<<<< HEAD
 #Configuracoes do eclipse/projeto
 .settings/
 .classpath
 target/
 .project
+=======
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+>>>>>>> 50ef7e7f9f10a81a838d524ebcd132ffef21e179
