@@ -1,0 +1,5 @@
+#Configuracoes do eclipse/projeto
+.settings/
+.classpath
+target/
+.project
