@@ -4,10 +4,9 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ifpb.monteiro.ads.controller.JanelaPrincipalController">
    <children>
       <TextField layoutX="226.0" layoutY="188.0" />
-      <Button layoutX="274.0" layoutY="247.0" mnemonicParsing="false" text="Button" />
+      <Button fx:id="botaoTeste" layoutX="274.0" layoutY="247.0" mnemonicParsing="false" onAction="#teste" text="Button" />
    </children>
 </AnchorPane>

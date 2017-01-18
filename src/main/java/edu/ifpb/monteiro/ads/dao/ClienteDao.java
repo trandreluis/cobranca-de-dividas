@@ -8,16 +8,16 @@ import edu.ifpb.monteiro.ads.model.Cliente;
  * 
  * @author Andre Luis
  * 
- * e-mail: tr.andreluis@gmail.com
+ *         e-mail: tr.andreluis@gmail.com
  *
  */
 
 public class ClienteDao {
 
 	public void salvar(Cliente cliente) {
-		
+
 	}
-	
+
 	public Cliente buscar(long idCliente) {
 		return null;
 	}
@@ -25,9 +25,9 @@ public class ClienteDao {
 	public ArrayList<Cliente> buscarTodos() {
 		return null;
 	}
-	
+
 	public void apagar(long idCliente) {
-		
+
 	}
-	
+
 }

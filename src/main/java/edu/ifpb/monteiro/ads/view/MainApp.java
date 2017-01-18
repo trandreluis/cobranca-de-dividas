@@ -7,6 +7,14 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+/**
+ * 
+ * @author Andre Luis
+ * 
+ *         e-mail: tr.andreluis@gmail.com
+ *
+ */
+
 public class MainApp extends Application {
 
 	private AnchorPane root;
