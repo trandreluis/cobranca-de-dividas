@@ -14,7 +14,7 @@ import java.sql.SQLException;
 
 public class ConexaoDB {
 
-	private static String url = "jdbc:derby:banco-sas;create=true;user=derby;password=derby";
+	private static String url = "jdbc:derby:banco-dividas;create=true;user=derby;password=derby";
 	private static String driver = "org.apache.derby.jdbc.EmbeddedDriver";
 	
 	public static Connection getConnection() {
