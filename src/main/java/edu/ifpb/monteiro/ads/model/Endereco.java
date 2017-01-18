@@ -1,5 +1,13 @@
 package edu.ifpb.monteiro.ads.model;
 
+/**
+ * 
+ * @author Andre Luis
+ * 
+ * e-mail: tr.andreluis@gmail.com
+ *
+ */
+
 public class Endereco {
 
 	private long id;

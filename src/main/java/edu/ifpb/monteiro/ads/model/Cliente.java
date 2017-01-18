@@ -2,6 +2,14 @@ package edu.ifpb.monteiro.ads.model;
 
 import java.util.Date;
 
+/**
+ * 
+ * @author Andre Luis
+ * 
+ * e-mail: tr.andreluis@gmail.com
+ *
+ */
+
 public class Cliente {
 
 	private long id;
