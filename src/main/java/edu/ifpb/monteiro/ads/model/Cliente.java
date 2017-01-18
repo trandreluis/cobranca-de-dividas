@@ -13,6 +13,7 @@ import java.util.Date;
 public class Cliente {
 
 	private long id;
+	private Divida divida;
 	private String nome;
 	private String cpf;
 	private Date dataNascimento;
@@ -47,6 +48,12 @@ public class Cliente {
 	}
 	public void setId(long id) {
 		this.id = id;
+	}
+	public Divida getDivida() {
+		return divida;
+	}
+	public void setDivida(Divida divida) {
+		this.divida = divida;
 	}
 	
 }
