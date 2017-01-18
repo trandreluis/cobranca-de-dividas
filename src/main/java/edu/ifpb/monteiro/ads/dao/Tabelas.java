@@ -23,14 +23,15 @@ public class Tabelas {
 	public static void main(String[] args) {
 
 		Tabelas t = new Tabelas();
-		t.criarTabelaClientes();
+//		t.criarTabelaClientes();
+		t.criarTabelaEnderencos();
 
 	}
 
 	public void criarTabelaClientes() {
 
 		String sql = "CREATE TABLE clientes(" + "id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY"
-				+ " (START WITH 1, INCREMENT BY 1), id_divida LONG VARCHAR, nome VARCHAR(70) NOT NULL,"
+				+ " (START WITH 1, INCREMENT BY 1), id_divida LONG VARCHAR NOT NULL, nome VARCHAR(70) NOT NULL,"
 				+ " cpf VARCHAR(15) NOT NULL, data_nascimento DATE, endereco LONG VARCHAR)";
 
 		try {
@@ -44,11 +45,24 @@ public class Tabelas {
 
 	}
 
-	public void criarTabelaEnderenco() {
+	public void criarTabelaEnderencos() {
 
+		String sql = "CREATE TABLE clientes(" + "id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY"
+				+ " (START WITH 1, INCREMENT BY 1), rua VARCHAR(60) NOT NULL, numero VARCHAR(10) NOT NULL,"
+				+ " bairro VARCHAR(60) NOT NULL, cidade VARCHAR(60) NOT NULL, estado VARCHAR(50) NOT NULL, ponto_referencia VARCHAR(50))";
+		
+		try {
+			PreparedStatement statement = conexao.prepareStatement(sql);
+
+			statement.execute();
+			statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
-	public void criarTabelaDivida() {
+	public void criarTabelaDividas() {
 
 	}
 
