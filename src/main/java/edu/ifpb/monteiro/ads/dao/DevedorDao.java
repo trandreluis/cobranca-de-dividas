@@ -1,7 +1,12 @@
 package edu.ifpb.monteiro.ads.dao;
 
+import java.beans.Statement;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
+import edu.ifpb.monteiro.ads.banco.ConexaoDB;
 import edu.ifpb.monteiro.ads.model.Devedor;
 
 /**
@@ -14,11 +19,25 @@ import edu.ifpb.monteiro.ads.model.Devedor;
 
 public class DevedorDao {
 
-	public void salvar(Devedor cliente) {
+	private Connection conexao = ConexaoDB.getConnection();
 
+	public void salvar(Devedor devedor) {
+
+		String sql = "INSERT INTO devedores(id_divida, nome, cpf, data_nascimento, id_endereco) VALUES (?, ?, ?, ?, ?)";
+		
+		try {
+			PreparedStatement statement = conexao.prepareStatement(sql);
+			
+			statement.setLong(1, 100);
+			statement.setString(2, "");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
 	}
 
-	public Devedor buscar(long idCliente) {
+	public Devedor buscar(long idDevedor) {
 		return null;
 	}
 
@@ -26,7 +45,7 @@ public class DevedorDao {
 		return null;
 	}
 
-	public void apagar(long idCliente) {
+	public void apagar(long idDevedor) {
 
 	}
 
