@@ -1,9 +1,13 @@
 package edu.ifpb.monteiro.ads.controller;
 
+import edu.ifpb.monteiro.ads.model.Devedor;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 
 /**
  * 
@@ -16,19 +20,86 @@ import javafx.scene.control.Button;
 public class JanelaPrincipalController {
 
 	@FXML
-	Button botaoTeste;
+	AnchorPane janelaPrincipal;
+	
+	@FXML
+	TableView<Devedor> tabelaDevedores;
+	
+	@FXML
+	TableColumn<String, Devedor> colunaNomeDevedor;
+	
+	@FXML
+	TableColumn<String, Devedor> colunaCidadeDevedor;
+	
+	@FXML
+	TableColumn<Integer, Devedor> colunaIdadeDevedor;
+	
+	@FXML
+	TableColumn<Double, Devedor> colunaDividaDevedor;
 
-	public void teste() {
+	@FXML
+	Button botaoNovoDevedor;
+	
+	@FXML
+	Button botaoEditarDevedor;
+	
+	@FXML
+	Button botaoExcluirDevedor;
+	
+	@FXML
+	Button botaoNegociar;
+	
+	
+	public void novoDevedor() {
 
 		Alert alerta = new Alert(AlertType.INFORMATION);
 
 		alerta.setTitle("Informacao");
 		alerta.setHeaderText("Sucesso!");
 		alerta.setContentText(
-				"O seu botao esta funcionando corretamente!\nIsso significa dizer que o seu FXML esta apontando para o Controller de forma correta e so seu Controller, por sua vez, agiu de maneira esperada!");
+				"Cadastrar novo devedor!");
+
+		alerta.showAndWait();
+
+	}
+	
+	public void editarDevedor() {
+
+		Alert alerta = new Alert(AlertType.INFORMATION);
+
+		alerta.setTitle("Informacao");
+		alerta.setHeaderText("Sucesso!");
+		alerta.setContentText(
+				"Editar devedor!");
 
 		alerta.showAndWait();
 
 	}
 
+	public void excluirDevedor() {
+
+		Alert alerta = new Alert(AlertType.INFORMATION);
+
+		alerta.setTitle("Informacao");
+		alerta.setHeaderText("Sucesso!");
+		alerta.setContentText(
+				"Excluir devedor!");
+
+		alerta.showAndWait();
+
+	}
+	
+	public void negociarComDevedor() {
+
+		Alert alerta = new Alert(AlertType.INFORMATION);
+
+		alerta.setTitle("Informacao");
+		alerta.setHeaderText("Sucesso!");
+		alerta.setContentText(
+				"Negociar com devedor!");
+
+		alerta.showAndWait();
+
+	}
+	
 }
