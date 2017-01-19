@@ -33,7 +33,7 @@ public class Tabelas {
 
 		String sql = "CREATE TABLE devedores(id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY"
 				+ " (START WITH 1, INCREMENT BY 1), id_divida LONG VARCHAR NOT NULL, nome VARCHAR(70) NOT NULL,"
-				+ " cpf VARCHAR(15) NOT NULL, data_nascimento DATE, endereco LONG VARCHAR)";
+				+ " cpf VARCHAR(15) NOT NULL, data_nascimento DATE, id_endereco LONG VARCHAR)";
 
 		try {
 			PreparedStatement statement = conexao.prepareStatement(sql);
