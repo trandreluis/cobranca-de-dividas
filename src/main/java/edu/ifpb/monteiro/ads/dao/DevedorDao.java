@@ -1,9 +1,9 @@
 package edu.ifpb.monteiro.ads.dao;
 
-import java.beans.Statement;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -26,14 +26,20 @@ public class DevedorDao {
 
 	public static void main(String[] args) {
 
-		Divida divida = new Divida(120, new Date(2017, 1, 19), "Sapato Nike PowerShift");
-		Endereco endereco = new Endereco("Rua Antao Alves", "11A", "Centro", "Sertania", "Pernambuco",
-				"Proximo a igreja velha");
-		Devedor devedor = new Devedor(divida, "Andre", "90909098754665", new Date(1996, 10, 25), endereco);
-		
-		
+		Divida divida = new Divida(120, new Date(2014, 12, 9), "Sapato Social");
+		Endereco endereco = new Endereco("Rua Alves Lucena", "33", "Vila da Cohab", "Arcoverde", "Pernambuco",
+				"Proximo a saída pra Pesqueira");
+		Devedor devedor = new Devedor(divida, "Andre", "426765326782", new Date(1980, 8, 7), endereco);
+
 		DevedorDao dao = new DevedorDao();
+//		sucesso no cadastro
 		dao.salvar(devedor);
+		
+		ArrayList<Devedor> devedores = dao.buscarTodos();
+		
+		for(Devedor d : devedores) {
+			System.out.println(d.toString());
+		}
 
 	}
 
@@ -50,6 +56,10 @@ public class DevedorDao {
 			statement.setString(3, devedor.getNome());
 			statement.setDate(4, devedor.getDataNascimento());
 			statement.setLong(5, devedor.getEndereco().getId());
+			
+			statement.execute();
+			
+			statement.close();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -62,7 +72,37 @@ public class DevedorDao {
 	}
 
 	public ArrayList<Devedor> buscarTodos() {
-		return null;
+		
+		ArrayList<Devedor> devedores = new ArrayList<>();
+		
+		String sql = "SELECT * FROM devedores";
+		
+		try {
+			
+			PreparedStatement statement = conexao.prepareStatement(sql);
+			
+			ResultSet result = statement.executeQuery();
+			
+			Devedor devedor;
+			
+			while(result.next()) {
+				
+				devedor = new Devedor();
+				devedor.setNome(result.getString("nome"));
+				devedor.setCpf(result.getString("cpf"));
+				devedor.setDataNascimento(result.getDate("data_nascimento"));
+				
+				devedores.add(devedor);
+			}
+			
+			statement.close();
+			result.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return devedores;
 	}
 
 	public void apagar(long idDevedor) {
