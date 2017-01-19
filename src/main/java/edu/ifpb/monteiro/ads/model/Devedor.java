@@ -29,6 +29,10 @@ public class Devedor {
 		
 	}
 	
+	public Devedor() {
+		
+	}
+
 	public String getNome() {
 		return nome;
 	}
@@ -78,8 +82,12 @@ public class Devedor {
 	}
 
 	public String toString() {
-		return "ID: " + id + " | ID_DIVIDA: " + divida.getId() + " | NOME: " + nome + " | CPF: " + cpf
-				+ " | DATA NASCIMENTO: " + dataNascimento.toString() + " | ENDERECO: " + endereco.getId();
+//		return "ID: " + id + " | ID_DIVIDA: " + divida.getId() + " | NOME: " + nome + " | CPF: " + cpf
+//				+ " | DATA NASCIMENTO: " + dataNascimento.toString() + " | ENDERECO: " + endereco.getId();
+		
+		return "ID: " + id + " | NOME: " + nome + " | CPF: " + cpf
+				+ " | DATA NASCIMENTO: " + dataNascimento.toLocaleString();
+	
 	}
 
 }
