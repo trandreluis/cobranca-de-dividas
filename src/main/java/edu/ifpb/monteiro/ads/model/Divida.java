@@ -34,8 +34,8 @@ public class Divida {
 	public Date getDataDivida() {
 		return dataDivida;
 	}
-	public void setDataDivida(Date data_divida) {
-		this.dataDivida = data_divida;
+	public void setDataDivida(Date dataDivida) {
+		this.dataDivida = dataDivida;
 	}
 	public String getDescricao() {
 		return descricao;
