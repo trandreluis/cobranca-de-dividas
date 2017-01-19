@@ -6,14 +6,14 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="janelaPrincipal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="511.0" prefWidth="669.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ifpb.monteiro.ads.controller.JanelaPrincipalController">
+<AnchorPane fx:id="janelaPrincipal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="543.0" prefWidth="738.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ifpb.monteiro.ads.controller.JanelaPrincipalController">
    <children>
       <TableView fx:id="tabelaDevedores" layoutX="18.0" layoutY="50.0" prefHeight="378.0" prefWidth="634.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0">
         <columns>
-          <TableColumn fx:id="colunaNomeDevedor" editable="false" prefWidth="232.0" resizable="false" sortable="false" text="Nome" />
-          <TableColumn fx:id="colunaCidadeDevedor" editable="false" minWidth="0.0" prefWidth="142.0" resizable="false" sortable="false" text="Cidade" />
-            <TableColumn fx:id="colunaIdadeDevedor" editable="false" minWidth="0.0" prefWidth="73.0" resizable="false" sortable="false" text="Idade" />
-            <TableColumn fx:id="colunaDividaDevedor" editable="false" minWidth="0.0" prefWidth="201.0" resizable="false" sortable="false" text="Valor da Divida" />
+          <TableColumn fx:id="colunaNomeDevedor" editable="false" prefWidth="298.0" resizable="false" sortable="false" text="Nome" />
+          <TableColumn fx:id="colunaCidadeDevedor" editable="false" minWidth="0.0" prefWidth="196.0" resizable="false" sortable="false" text="Cidade" />
+            <TableColumn fx:id="colunaIdadeDevedor" editable="false" minWidth="0.0" prefWidth="88.0" resizable="false" sortable="false" text="Idade" />
+            <TableColumn fx:id="colunaDividaDevedor" editable="false" minWidth="0.0" prefWidth="134.0" resizable="false" sortable="false" text="Valor da Divida" />
         </columns>
       </TableView>
       <HBox layoutX="8.0" layoutY="456.0" prefHeight="41.0" prefWidth="649.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
@@ -34,10 +34,15 @@
                   <Font size="18.0" />
                </font>
                <HBox.margin>
-                  <Insets left="210.0" />
+                  <Insets left="275.0" />
                </HBox.margin>
             </Button>
          </children>
       </HBox>
+      <Text layoutX="301.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Devedores" wrappingWidth="68.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
