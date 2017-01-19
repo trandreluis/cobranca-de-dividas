@@ -1,6 +1,6 @@
 package edu.ifpb.monteiro.ads.model;
 
-import java.util.Date;
+import java.sql.Date;
 
 /**
  * 
@@ -19,6 +19,16 @@ public class Devedor {
 	private Date dataNascimento;
 	private Endereco endereco;
 
+	public Devedor(Divida divida, String nome, String cpf, Date dataNascimento, Endereco endereco) {
+		
+		this.divida = divida;
+		this.nome = nome;
+		this.cpf = cpf;
+		this.dataNascimento = dataNascimento;
+		this.endereco = endereco;
+		
+	}
+	
 	public String getNome() {
 		return nome;
 	}
@@ -65,6 +75,11 @@ public class Devedor {
 
 	public void setDivida(Divida divida) {
 		this.divida = divida;
+	}
+
+	public String toString() {
+		return "ID: " + id + " | ID_DIVIDA: " + divida.getId() + " | NOME: " + nome + " | CPF: " + cpf
+				+ " | DATA NASCIMENTO: " + dataNascimento.toString() + " | ENDERECO: " + endereco.getId();
 	}
 
 }

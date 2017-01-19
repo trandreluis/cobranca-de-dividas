@@ -14,8 +14,16 @@ public class Divida {
 	
 	private long id;
 	private double valor;
-	private Date data_divida;
+	private Date dataDivida;
 	private String descricao;
+	
+	public Divida(double valor, Date dataDivida, String descricao) {
+		
+		this.valor = valor;
+		this.dataDivida = dataDivida;
+		this.descricao = descricao;
+		
+	}
 	
 	public double getValor() {
 		return valor;
@@ -23,11 +31,11 @@ public class Divida {
 	public void setValor(double valor) {
 		this.valor = valor;
 	}
-	public Date getData_divida() {
-		return data_divida;
+	public Date getDataDivida() {
+		return dataDivida;
 	}
-	public void setData_divida(Date data_divida) {
-		this.data_divida = data_divida;
+	public void setDataDivida(Date data_divida) {
+		this.dataDivida = data_divida;
 	}
 	public String getDescricao() {
 		return descricao;

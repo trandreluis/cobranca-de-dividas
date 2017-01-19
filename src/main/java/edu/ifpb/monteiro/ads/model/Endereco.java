@@ -18,6 +18,17 @@ public class Endereco {
 	private String estado;
 	private String pontoReferencia;
 
+	public Endereco(String rua, String numero, String bairro, String cidade, String estado, String pontoReferencia) {
+		
+		this.rua = rua;
+		this.numero = numero;
+		this.bairro = bairro;
+		this.cidade = cidade;
+		this.estado = estado;
+		this.pontoReferencia = pontoReferencia;
+		
+	}
+	
 	public String getRua() {
 		return rua;
 	}
