@@ -2,7 +2,7 @@ package edu.ifpb.monteiro.ads.dao;
 
 import java.util.ArrayList;
 
-import edu.ifpb.monteiro.ads.model.Cliente;
+import edu.ifpb.monteiro.ads.model.Devedor;
 
 /**
  * 
@@ -12,17 +12,17 @@ import edu.ifpb.monteiro.ads.model.Cliente;
  *
  */
 
-public class ClienteDao {
+public class DevedorDao {
 
-	public void salvar(Cliente cliente) {
+	public void salvar(Devedor cliente) {
 
 	}
 
-	public Cliente buscar(long idCliente) {
+	public Devedor buscar(long idCliente) {
 		return null;
 	}
 
-	public ArrayList<Cliente> buscarTodos() {
+	public ArrayList<Devedor> buscarTodos() {
 		return null;
 	}
 

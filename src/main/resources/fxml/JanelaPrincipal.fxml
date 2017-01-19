@@ -1,12 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ifpb.monteiro.ads.controller.JanelaPrincipalController">
+<AnchorPane fx:id="janelaPrincipal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="511.0" prefWidth="669.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ifpb.monteiro.ads.controller.JanelaPrincipalController">
    <children>
-      <TextField layoutX="226.0" layoutY="188.0" />
-      <Button fx:id="botaoTeste" layoutX="274.0" layoutY="247.0" mnemonicParsing="false" onAction="#teste" text="Button" />
+      <TableView fx:id="tabelaDevedores" layoutX="18.0" layoutY="50.0" prefHeight="378.0" prefWidth="634.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0">
+        <columns>
+          <TableColumn fx:id="colunaNomeDevedor" prefWidth="232.0" resizable="false" text="Nome" />
+          <TableColumn fx:id="colunaCidadeDevedor" minWidth="0.0" prefWidth="142.0" resizable="false" text="Cidade" />
+            <TableColumn fx:id="colunaIdadeDevedor" minWidth="0.0" prefWidth="73.0" text="Idade" />
+            <TableColumn fx:id="colunaDividaDevedor" minWidth="0.0" prefWidth="201.0" resizable="false" text="Valor da Divida" />
+        </columns>
+      </TableView>
+      <HBox layoutX="8.0" layoutY="456.0" prefHeight="41.0" prefWidth="649.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+         <children>
+            <Button fx:id="botaoNovoDevedor" mnemonicParsing="false" onAction="#novoDevedor" prefHeight="30.0" prefWidth="70.0" text="Novo" />
+            <Button fx:id="botaoEditarDevedor" mnemonicParsing="false" onAction="#editarDevedor" prefHeight="30.0" prefWidth="70.0" text="Editar">
+               <HBox.margin>
+                  <Insets left="60.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="botaoExcluirDevedor" mnemonicParsing="false" onAction="#excluirDevedor" prefHeight="30.0" prefWidth="70.0" text="Excluir">
+               <HBox.margin>
+                  <Insets left="60.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="botaoNegociar" mnemonicParsing="false" onAction="#negociarComDevedor" prefHeight="41.0" prefWidth="115.0" text="Negociar!">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="210.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>
