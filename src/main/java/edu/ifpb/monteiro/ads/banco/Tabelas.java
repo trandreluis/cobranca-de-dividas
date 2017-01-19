@@ -24,16 +24,17 @@ public class Tabelas {
 
 		Tabelas t = new Tabelas();
 		t.criarTabelaDevedores();
-//		t.criarTabelaEnderencos();
-//		t.criarTabelaDividas();
-		
+		t.criarTabelaEnderencos();
+		t.criarTabelaDividas();
+
 	}
 
 	public void criarTabelaDevedores() {
 
 		String sql = "CREATE TABLE devedores(id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY"
-				+ " (START WITH 1, INCREMENT BY 1), id_divida LONG VARCHAR NOT NULL, nome VARCHAR(70) NOT NULL,"
-				+ " cpf VARCHAR(15) NOT NULL, data_nascimento DATE, id_endereco LONG VARCHAR)";
+				+ " (START WITH 1, INCREMENT BY 1), id_divida LONG VARCHAR NOT NULL,"
+				+ " nome VARCHAR(70) NOT NULL, cpf VARCHAR(15) NOT NULL,"
+				+ " data_nascimento DATE NOT NULL, id_endereco LONG VARCHAR NOT NULL)";
 
 		try {
 			PreparedStatement statement = conexao.prepareStatement(sql);
@@ -45,7 +46,6 @@ public class Tabelas {
 		}
 
 	}
-
 
 	public void criarTabelaEnderencos() {
 
@@ -53,7 +53,7 @@ public class Tabelas {
 				+ " (START WITH 1, INCREMENT BY 1), rua VARCHAR(60) NOT NULL, numero VARCHAR(10) NOT NULL,"
 				+ " bairro VARCHAR(60) NOT NULL, cidade VARCHAR(60) NOT NULL, estado VARCHAR(50) NOT NULL,"
 				+ " ponto_referencia VARCHAR(50))";
-		
+
 		try {
 			PreparedStatement statement = conexao.prepareStatement(sql);
 
@@ -62,7 +62,7 @@ public class Tabelas {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	public void criarTabelaDividas() {
@@ -70,7 +70,7 @@ public class Tabelas {
 		String sql = "CREATE TABLE dividas(id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY"
 				+ " (START WITH 1, INCREMENT BY 1), valor DOUBLE NOT NULL, data_divida DATE NOT NULL,"
 				+ " descricao VARCHAR(60) NOT NULL)";
-		
+
 		try {
 			PreparedStatement statement = conexao.prepareStatement(sql);
 
@@ -79,7 +79,7 @@ public class Tabelas {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }
