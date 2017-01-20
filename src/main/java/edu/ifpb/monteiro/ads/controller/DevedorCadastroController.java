@@ -1,5 +1,8 @@
 package edu.ifpb.monteiro.ads.controller;
 
+import javafx.fxml.FXML;
+import javafx.scene.layout.AnchorPane;
+
 /**
  * 
  * @author Andre Luis
@@ -10,6 +13,7 @@ package edu.ifpb.monteiro.ads.controller;
 
 public class DevedorCadastroController {
 
-	
+	@FXML
+	AnchorPane root;
 	
 }
