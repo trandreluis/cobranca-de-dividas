@@ -6,7 +6,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="janelaPrincipal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="543.0" prefWidth="738.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ifpb.monteiro.ads.controller.JanelaPrincipalController">
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="543.0" prefWidth="738.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ifpb.monteiro.ads.controller.JanelaPrincipalController">
    <children>
       <TableView fx:id="tabelaDevedores" layoutX="18.0" layoutY="50.0" prefHeight="378.0" prefWidth="634.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0">
         <columns>
@@ -39,7 +39,7 @@
             </Button>
          </children>
       </HBox>
-      <Text layoutX="301.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Devedores" wrappingWidth="68.0">
+      <Text layoutX="328.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Devedores" wrappingWidth="68.0">
          <font>
             <Font size="14.0" />
          </font>
