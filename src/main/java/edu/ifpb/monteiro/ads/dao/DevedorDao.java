@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import edu.ifpb.monteiro.ads.banco.ConexaoDB;
-import edu.ifpb.monteiro.ads.model.Devedor;
+import edu.ifpb.monteiro.ads.model.DevedorAntigo;
 import edu.ifpb.monteiro.ads.model.Divida;
 import edu.ifpb.monteiro.ads.model.Endereco;
 
@@ -29,21 +29,21 @@ public class DevedorDao {
 		Divida divida = new Divida(120, new Date(2014, 12, 9), "Sapato Social");
 		Endereco endereco = new Endereco("Rua Alves Lucena", "33", "Vila da Cohab", "Arcoverde", "Pernambuco",
 				"Proximo a saída pra Pesqueira");
-		Devedor devedor = new Devedor(divida, "Andre", "426765326782", new Date(1980, 8, 7), endereco);
+		DevedorAntigo devedor = new DevedorAntigo(divida, "Andre", "426765326782", new Date(1980, 8, 7), endereco);
 
 		DevedorDao dao = new DevedorDao();
 //		sucesso no cadastro
 		dao.salvar(devedor);
 		
-		ArrayList<Devedor> devedores = dao.buscarTodos();
+		ArrayList<DevedorAntigo> devedores = dao.buscarTodos();
 		
-		for(Devedor d : devedores) {
+		for(DevedorAntigo d : devedores) {
 			System.out.println(d.toString());
 		}
 
 	}
 
-	public void salvar(Devedor devedor) {
+	public void salvar(DevedorAntigo devedor) {
 
 		String sql = "INSERT INTO devedores(id_divida, nome, cpf, data_nascimento, id_endereco) VALUES (?, ?, ?, ?, ?)";
 
@@ -67,13 +67,13 @@ public class DevedorDao {
 
 	}
 
-	public Devedor buscar(long idDevedor) {
+	public DevedorAntigo buscar(long idDevedor) {
 		return null;
 	}
 
-	public ArrayList<Devedor> buscarTodos() {
+	public ArrayList<DevedorAntigo> buscarTodos() {
 		
-		ArrayList<Devedor> devedores = new ArrayList<>();
+		ArrayList<DevedorAntigo> devedores = new ArrayList<>();
 		
 		String sql = "SELECT * FROM devedores";
 		
@@ -83,11 +83,11 @@ public class DevedorDao {
 			
 			ResultSet result = statement.executeQuery();
 			
-			Devedor devedor;
+			DevedorAntigo devedor;
 			
 			while(result.next()) {
 				
-				devedor = new Devedor();
+				devedor = new DevedorAntigo();
 				devedor.setNome(result.getString("nome"));
 				devedor.setCpf(result.getString("cpf"));
 				devedor.setDataNascimento(result.getDate("data_nascimento"));
