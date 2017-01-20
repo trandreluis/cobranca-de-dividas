@@ -1,6 +1,7 @@
 package edu.ifpb.monteiro.ads.controller;
 
 import edu.ifpb.monteiro.ads.model.Devedor;
+import edu.ifpb.monteiro.ads.view.DevedorCadastroJanela;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -20,7 +21,7 @@ import javafx.scene.control.TableView;
 public class JanelaPrincipalController {
 
 	@FXML
-	AnchorPane janelaPrincipal;
+	AnchorPane root;
 	
 	@FXML
 	TableView<Devedor> tabelaDevedores;
@@ -60,6 +61,9 @@ public class JanelaPrincipalController {
 				"Cadastrar novo devedor!");
 
 		alerta.showAndWait();
+		
+		DevedorCadastroJanela devedorCadastro = new DevedorCadastroJanela(root);
+		devedorCadastro.show();
 
 	}
 	
