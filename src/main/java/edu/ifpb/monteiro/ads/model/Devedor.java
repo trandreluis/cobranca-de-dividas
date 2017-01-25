@@ -1,13 +1,10 @@
 package edu.ifpb.monteiro.ads.model;
 
-import java.sql.Date;
 import java.time.LocalDate;
 
 import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.LongProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -33,13 +30,12 @@ public class Devedor {
 
 	}
 
-	public Devedor(Divida divida, String nome, String cpf, Date dataNascimento, Endereco endereco) {
+	public Devedor(Divida divida, String nome, String cpf, LocalDate dataNascimento, Endereco endereco) {
 
 		this.divida = divida;
 		this.nome = new SimpleStringProperty(nome);
 		this.cpf = new SimpleStringProperty(cpf);
-		this.dataNascimento = new SimpleObjectProperty<LocalDate>(
-				LocalDate.of(dataNascimento.getYear(), dataNascimento.getMonth(), dataNascimento.getDay()));
+		this.dataNascimento = new SimpleObjectProperty<LocalDate>(dataNascimento);
 		this.endereco = endereco;
 
 	}
@@ -97,8 +93,9 @@ public class Devedor {
 	}
 
 	public String toString() {
-		return "ID: " + id + " | DIVIDA: " + divida.getValor() + " | NOME: " + nome + " | CPF: " + cpf
-				+ " | DATA NASCIMENTO: " + dataNascimento + " | ENDERECO: " + endereco;
+		return "ID: " + id.get() + " | DIVIDA: " + this.divida.getValor() + " | NOME: " + nome.get() + " | CPF: "
+				+ cpf.get() + " | DATA NASCIMENTO: " + dataNascimento.get() 
+				+ " | ENDERECO ID: " + endereco.getId();
 	}
 
 }

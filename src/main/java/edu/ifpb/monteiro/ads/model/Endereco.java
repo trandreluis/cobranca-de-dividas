@@ -1,5 +1,10 @@
 package edu.ifpb.monteiro.ads.model;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 /**
  * 
  * @author Andre Luis
@@ -10,79 +15,91 @@ package edu.ifpb.monteiro.ads.model;
 
 public class Endereco {
 
-	private long id;
-	private String rua;
-	private String numero;
-	private String bairro;
-	private String cidade;
-	private String estado;
-	private String pontoReferencia;
+	private IntegerProperty id;
+	private StringProperty rua;
+	private StringProperty numero;
+	private StringProperty bairro;
+	private StringProperty cidade;
+	private StringProperty estado;
+	private StringProperty pontoReferencia;
+
+	public Endereco() {
+
+	}
 
 	public Endereco(String rua, String numero, String bairro, String cidade, String estado, String pontoReferencia) {
-		
-		this.rua = rua;
-		this.numero = numero;
-		this.bairro = bairro;
-		this.cidade = cidade;
-		this.estado = estado;
-		this.pontoReferencia = pontoReferencia;
-		
+
+		this.rua = new SimpleStringProperty(rua);
+		this.numero = new SimpleStringProperty(numero);
+		this.bairro = new SimpleStringProperty(bairro);
+		this.cidade = new SimpleStringProperty(cidade);
+		this.estado = new SimpleStringProperty(estado);
+		this.pontoReferencia = new SimpleStringProperty(pontoReferencia);
+
 	}
-	
+
 	public String getRua() {
-		return rua;
+		return rua.get();
 	}
 
 	public void setRua(String rua) {
-		this.rua = rua;
+		this.rua = new SimpleStringProperty(rua);
 	}
 
 	public String getNumero() {
-		return numero;
+		return numero.get();
 	}
 
 	public void setNumero(String numero) {
-		this.numero = numero;
+		this.numero = new SimpleStringProperty(numero);
 	}
 
 	public String getBairro() {
-		return bairro;
+		return bairro.get();
 	}
 
 	public void setBairro(String bairro) {
-		this.bairro = bairro;
+		this.bairro = new SimpleStringProperty(bairro);
 	}
 
 	public String getCidade() {
-		return cidade;
+		return cidade.get();
 	}
 
 	public void setCidade(String cidade) {
-		this.cidade = cidade;
+		this.cidade = new SimpleStringProperty(cidade);
 	}
 
 	public String getEstado() {
-		return estado;
+		return estado.get();
 	}
 
 	public void setEstado(String estado) {
-		this.estado = estado;
+		this.estado = new SimpleStringProperty(estado);
 	}
 
 	public String getPontoReferencia() {
-		return pontoReferencia;
+		return pontoReferencia.get();
 	}
 
 	public void setPontoReferencia(String pontoReferencia) {
-		this.pontoReferencia = pontoReferencia;
+		this.pontoReferencia = new SimpleStringProperty(pontoReferencia);
 	}
 
-	public long getId() {
-		return id;
+	public Integer getId() {
+		return id.get();
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setId(Integer id) {
+		this.id = new SimpleIntegerProperty(id);
+	}
+
+	public String toString() {
+
+		return "ID: "+this.id.get()+" | RUA: " + this.rua.get() + " | NUMERO: " + this.numero.get() + " | BAIRRO: " + this.bairro.get()
+				+ " | CIDADE: " + this.cidade.get() + " | ESTADO: " + this.estado.get() + " | PONTO DE REFERENCIA: "
+				+ this.pontoReferencia.get();
+
 	}
 
 }
