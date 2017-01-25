@@ -1,6 +1,15 @@
 package edu.ifpb.monteiro.ads.model;
 
-import java.sql.Date;
+import java.time.LocalDate;
+
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 /**
  * 
@@ -11,43 +20,58 @@ import java.sql.Date;
  */
 
 public class Divida {
-	
-	private long id;
-	private double valor;
-	private Date dataDivida;
-	private String descricao;
-	
-	public Divida(double valor, Date dataDivida, String descricao) {
-		
-		this.valor = valor;
-		this.dataDivida = dataDivida;
-		this.descricao = descricao;
+
+	private IntegerProperty id;
+	private DoubleProperty valor;
+	private ObjectProperty<LocalDate> dataDivida;
+	private StringProperty descricao;
+
+	public Divida() {
 		
 	}
-	
-	public double getValor() {
-		return valor;
+
+	public Divida(double valor, LocalDate dataDivida, String descricao) {
+
+		this.valor = new SimpleDoubleProperty(valor);
+		this.dataDivida = new SimpleObjectProperty<LocalDate>(dataDivida);
+		this.descricao = new SimpleStringProperty(descricao);
+
 	}
-	public void setValor(double valor) {
-		this.valor = valor;
+
+	public Integer getId() {
+		return id.get();
 	}
-	public Date getDataDivida() {
-		return dataDivida;
+
+	public void setId(Integer id) {
+		this.id = new SimpleIntegerProperty(id);
 	}
-	public void setDataDivida(Date dataDivida) {
-		this.dataDivida = dataDivida;
+
+	public Double getValor() {
+		return valor.get();
 	}
+
+	public void setValor(Double valor) {
+		this.valor = new SimpleDoubleProperty(valor);
+	}
+
+	public LocalDate getDataDivida() {
+		return dataDivida.get();
+	}
+
+	public void setDataDivida(LocalDate dataDivida) {
+		this.dataDivida = new SimpleObjectProperty<LocalDate>(dataDivida);
+	}
+
 	public String getDescricao() {
-		return descricao;
+		return descricao.get();
 	}
+
 	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+		this.descricao = new SimpleStringProperty(descricao);
 	}
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
+
+	public String toString() {
+		return "ID: "+this.id.get()+" | VALOR: "+this.valor.get() +" | DATA: "+this.dataDivida.get()+" | DESCRICAO: "+this.descricao.get();
 	}
 	
 }
