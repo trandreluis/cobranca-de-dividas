@@ -32,9 +32,9 @@ public class Tabelas {
 	public void criarTabelaDevedores() {
 
 		String sql = "CREATE TABLE devedores(id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY"
-				+ " (START WITH 1, INCREMENT BY 1), id_divida LONG VARCHAR NOT NULL,"
+				+ " (START WITH 1, INCREMENT BY 1), id_divida INTEGER NOT NULL,"
 				+ " nome VARCHAR(70) NOT NULL, cpf VARCHAR(15) NOT NULL,"
-				+ " data_nascimento DATE NOT NULL, id_endereco LONG VARCHAR NOT NULL)";
+				+ " data_nascimento DATE NOT NULL, id_endereco INTEGER NOT NULL)";
 
 		try {
 			PreparedStatement statement = conexao.prepareStatement(sql);
