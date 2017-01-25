@@ -6,17 +6,18 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="543.0" prefWidth="738.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ifpb.monteiro.ads.controller.JanelaPrincipalController">
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="768.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ifpb.monteiro.ads.controller.JanelaPrincipalController">
    <children>
-      <TableView fx:id="tabelaDevedores" layoutX="18.0" layoutY="50.0" prefHeight="378.0" prefWidth="634.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0">
+      <TableView fx:id="tabelaDevedores" layoutX="10.0" layoutY="71.0" prefHeight="434.0" prefWidth="748.0" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="71.0">
         <columns>
-          <TableColumn fx:id="colunaNomeDevedor" editable="false" prefWidth="298.0" resizable="false" sortable="false" text="Nome" />
-          <TableColumn fx:id="colunaCidadeDevedor" editable="false" minWidth="0.0" prefWidth="196.0" resizable="false" sortable="false" text="Cidade" />
-            <TableColumn fx:id="colunaIdadeDevedor" editable="false" minWidth="0.0" prefWidth="88.0" resizable="false" sortable="false" text="Idade" />
-            <TableColumn fx:id="colunaDividaDevedor" editable="false" minWidth="0.0" prefWidth="134.0" resizable="false" sortable="false" text="Valor da Divida" />
+          <TableColumn fx:id="colunaNomeDevedor" editable="false" prefWidth="214.0" resizable="false" sortable="false" text="Nome" />
+          <TableColumn fx:id="colunaCpfDevedor" editable="false" minWidth="0.0" prefWidth="183.0" resizable="false" sortable="false" text="CPF" />
+            <TableColumn fx:id="colunaIdadeDevedor" editable="false" minWidth="0.0" prefWidth="78.0" resizable="false" sortable="false" text="Idade" />
+            <TableColumn fx:id="colunaDividaDevedor" editable="false" minWidth="0.0" prefWidth="132.0" resizable="false" sortable="false" text="Valor da Divida" />
+            <TableColumn fx:id="colunaDataDivida" editable="false" minWidth="0.0" prefWidth="139.0" resizable="false" sortable="false" text="Data da Divida" />
         </columns>
       </TableView>
-      <HBox layoutX="8.0" layoutY="456.0" prefHeight="41.0" prefWidth="649.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+      <HBox layoutX="10.0" layoutY="530.0" prefHeight="41.0" prefWidth="649.0" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
          <children>
             <Button fx:id="botaoNovoDevedor" mnemonicParsing="false" onAction="#novoDevedor" prefHeight="30.0" prefWidth="70.0" text="Novo" />
             <Button fx:id="botaoEditarDevedor" mnemonicParsing="false" onAction="#editarDevedor" prefHeight="30.0" prefWidth="70.0" text="Editar">
@@ -29,20 +30,30 @@
                   <Insets left="60.0" />
                </HBox.margin>
             </Button>
+            <Button fx:id="botaoExpandirDevedor" mnemonicParsing="false" onAction="#expandirDevedor" prefHeight="30.0" prefWidth="80.0" text="Expandir">
+               <HBox.margin>
+                  <Insets left="60.0" />
+               </HBox.margin>
+            </Button>
             <Button fx:id="botaoNegociar" mnemonicParsing="false" onAction="#negociarComDevedor" prefHeight="41.0" prefWidth="115.0" text="Negociar!">
                <font>
                   <Font size="18.0" />
                </font>
                <HBox.margin>
-                  <Insets left="275.0" />
+                  <Insets left="230.0" />
                </HBox.margin>
             </Button>
          </children>
       </HBox>
-      <Text layoutX="328.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Devedores" wrappingWidth="68.0">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
+      <HBox layoutX="12.0" layoutY="23.0" prefHeight="24.0" prefWidth="327.0">
+         <children>
+            <TextField fx:id="fieldBuscaNome" prefHeight="25.0" prefWidth="261.0" promptText="Informe o nome..." />
+            <Button fx:id="botaoBuscar" mnemonicParsing="false" onAction="#buscarPeloNome" text="Buscar">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>
