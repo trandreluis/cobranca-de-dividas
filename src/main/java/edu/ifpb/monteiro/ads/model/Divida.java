@@ -69,6 +69,10 @@ public class Divida {
 	public void setDescricao(String descricao) {
 		this.descricao = new SimpleStringProperty(descricao);
 	}
+	
+	public ObjectProperty<LocalDate> dataDivida() {
+		return this.dataDivida;
+	}
 
 	public String toString() {
 		return "ID: "+this.id.get()+" | VALOR: "+this.valor.get() +" | DATA: "+this.dataDivida.get()+" | DESCRICAO: "+this.descricao.get();

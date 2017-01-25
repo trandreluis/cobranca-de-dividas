@@ -85,6 +85,10 @@ public class Endereco {
 	public void setPontoReferencia(String pontoReferencia) {
 		this.pontoReferencia = new SimpleStringProperty(pontoReferencia);
 	}
+	
+	public StringProperty cidade() {
+		return cidade;
+	}
 
 	public Integer getId() {
 		return id.get();
