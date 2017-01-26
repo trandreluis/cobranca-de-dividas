@@ -132,7 +132,14 @@ public class JanelaPrincipalController {
 		alerta.setContentText("Excluir devedor!");
 
 		alerta.showAndWait();
+		
+		Integer idDevedor = tabelaDevedores.getSelectionModel().getSelectedItem().getId();
 
+		DevedorDao daoDevedor = new DevedorDao();
+		daoDevedor.excluir(idDevedor);
+		
+		atualizarTabelaDevedorCompleta();
+		
 	}
 	
 	@FXML
