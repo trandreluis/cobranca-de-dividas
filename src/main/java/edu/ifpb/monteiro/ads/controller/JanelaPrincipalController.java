@@ -112,14 +112,13 @@ public class JanelaPrincipalController {
 	@FXML
 	public void editarDevedor() {
 
-		Alert alerta = new Alert(AlertType.INFORMATION);
+		DevedorCadastroJanela cadastroDevedor = new DevedorCadastroJanela(root);
+		cadastroDevedor.show();
+		
+		Devedor devedor = tabelaDevedores.getSelectionModel().getSelectedItem();
 
-		alerta.setTitle("Informacao");
-		alerta.setHeaderText("Sucesso!");
-		alerta.setContentText("Editar devedor!");
-
-		alerta.showAndWait();
-
+		DevedorCadastroJanela.getController().preencherCampos(devedor, true);
+		
 	}
 
 	@FXML
@@ -137,20 +136,12 @@ public class JanelaPrincipalController {
 	@FXML
 	public void expandirDevedor() {
 		
-		Alert alerta = new Alert(AlertType.INFORMATION);
-
-		alerta.setTitle("Informacao");
-		alerta.setHeaderText("Sucesso!");
-		alerta.setContentText("Expandir devedor!");
-
-		alerta.showAndWait();
-		
 		DevedorCadastroJanela cadastroDevedor = new DevedorCadastroJanela(root);
 		cadastroDevedor.show();
 		
 		Devedor devedor = tabelaDevedores.getSelectionModel().getSelectedItem();
 
-		DevedorCadastroJanela.getController().preencherDesabilitarCampos(devedor);
+		DevedorCadastroJanela.getController().preencherCampos(devedor, false);
 		
 	}
 
