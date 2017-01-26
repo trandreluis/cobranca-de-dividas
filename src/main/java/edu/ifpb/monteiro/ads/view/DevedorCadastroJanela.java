@@ -10,6 +10,14 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+/**
+ * 
+ * @author Andre Luis
+ * 
+ *         e-mail: tr.andreluis@gmail.com
+ *
+ */
+
 public class DevedorCadastroJanela extends Stage {
 
 	AnchorPane root;
@@ -32,10 +40,9 @@ public class DevedorCadastroJanela extends Stage {
 		try {
 			root = FXMLLoader.load(getClass().getResource("/fxml/DevedorCadastro.fxml"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		Scene cena = new Scene(root);
 		setScene(cena);
 
