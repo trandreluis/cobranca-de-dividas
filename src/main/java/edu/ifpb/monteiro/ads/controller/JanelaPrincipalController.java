@@ -68,15 +68,17 @@ public class JanelaPrincipalController {
 
 	@FXML
 	private Button botaoNegociar;
-
+	
+	private DevedorDao daoDevedor  = new DevedorDao();
+	
 	@FXML
 	public void initialize() {
 
 		ObservableList<Devedor> devedoresObservableList = FXCollections.observableArrayList();
 
-		DevedorDao dao = new DevedorDao();
-
-		ArrayList<Devedor> devedoresList = dao.buscarTodos();
+		devedoresObservableList = FXCollections.observableArrayList();
+		
+		ArrayList<Devedor> devedoresList = daoDevedor.buscarTodos();
 
 		for (Devedor d : devedoresList) {
 			devedoresObservableList.add(d);
@@ -94,31 +96,17 @@ public class JanelaPrincipalController {
 
 	@FXML
 	public void buscarPeloNome() {
-		
-		Alert alerta = new Alert(AlertType.INFORMATION);
-
-		alerta.setTitle("Informacao");
-		alerta.setHeaderText("Sucesso!");
-		alerta.setContentText("Buscar pelo nome!");
-
-		alerta.showAndWait();
-		
+		if(fieldBuscaNome.getText().equals("")) {
+			atualizarTabelaDevedorCompleta();
+		}else {
+			atualizarTabelaDevedorPeloNome();			
+		}
 	}
 	
 	@FXML
 	public void novoDevedor() {
-
-		Alert alerta = new Alert(AlertType.INFORMATION);
-
-		alerta.setTitle("Informacao");
-		alerta.setHeaderText("Sucesso!");
-		alerta.setContentText("Cadastrar novo devedor!");
-
-		alerta.showAndWait();
-
 		DevedorCadastroJanela devedorCadastro = new DevedorCadastroJanela(root);
 		devedorCadastro.show();
-
 	}
 
 	@FXML
@@ -172,5 +160,27 @@ public class JanelaPrincipalController {
 		alerta.showAndWait();
 
 	}
+	
+	public void atualizarTabelaDevedorCompleta() {
+		tabelaDevedores.getItems().setAll(buscarDevedoresCompleto());
+	}
+	
+	private ObservableList<Devedor> buscarDevedoresCompleto() {
+        ObservableList<Devedor> listDevedores = FXCollections
+                .observableArrayList();
+        listDevedores.setAll(daoDevedor.buscarTodos());
+        return listDevedores;
+    }
+	
+	public void atualizarTabelaDevedorPeloNome() {
+		tabelaDevedores.getItems().setAll(buscarDevedoresPeloNome());
+	}
+	
+	private ObservableList<Devedor> buscarDevedoresPeloNome() {
+        ObservableList<Devedor> listDevedores = FXCollections
+                .observableArrayList();
+        listDevedores.setAll(daoDevedor.buscarPorNome(fieldBuscaNome.getText()));
+        return listDevedores;
+    }
 
 }
