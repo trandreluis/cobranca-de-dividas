@@ -113,6 +113,40 @@ public class DevedorCadastroController {
 		fecharStage();
 	}
 
+	public void preencherDesabilitarCampos(Devedor devedor) {
+		
+		//Campo Devedor
+		fieldNomeDevedor.setText(devedor.getNome());
+		fieldNomeDevedor.setEditable(false);
+		fieldCpfDevedor.setText(devedor.getCpf());
+		fieldCpfDevedor.setEditable(false);
+		dateNascimentoDevedor.setValue(devedor.getDataNascimento());
+		dateNascimentoDevedor.setEditable(false);
+		
+		//Campo Divida
+		fieldDescricaoDivida.setText(devedor.getDivida().getDescricao());
+		fieldDescricaoDivida.setEditable(false);
+		fieldValorDivida.setText(devedor.getDivida().getValor().toString());
+		fieldValorDivida.setEditable(false);
+		dateDivida.setValue(devedor.getDivida().getDataDivida());
+		dateDivida.setEditable(false);
+		
+		//Campo Endereco
+		fieldRuaEndereco.setText(devedor.getEndereco().getRua());
+		fieldRuaEndereco.setEditable(false);
+		fieldNumeroEndereco.setText(devedor.getEndereco().getNumero());
+		fieldNumeroEndereco.setEditable(false);
+		fieldBairroEndereco.setText(devedor.getEndereco().getBairro());
+		fieldBairroEndereco.setEditable(false);
+		fieldCidadeEndereco.setText(devedor.getEndereco().getCidade());
+		fieldCidadeEndereco.setEditable(false);
+		fieldEstadoEndereco.setText(devedor.getEndereco().getEstado());
+		fieldEstadoEndereco.setEditable(false);
+		fieldPontoReferenciaEndereco.setText(devedor.getEndereco().getPontoReferencia());
+		fieldPontoReferenciaEndereco.setEditable(false);
+		
+	}
+	
 	@FXML
 	public void fecharStage() {
 		Stage stage = (Stage) root.getScene().getWindow();
