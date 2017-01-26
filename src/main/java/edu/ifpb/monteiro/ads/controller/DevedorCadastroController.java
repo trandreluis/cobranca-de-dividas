@@ -7,9 +7,12 @@ import edu.ifpb.monteiro.ads.model.Devedor;
 import edu.ifpb.monteiro.ads.model.Divida;
 import edu.ifpb.monteiro.ads.model.Endereco;
 import edu.ifpb.monteiro.ads.view.MainApp;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -62,6 +65,9 @@ public class DevedorCadastroController {
 
 	@FXML
 	private DatePicker dateNascimentoDevedor;
+	
+	@FXML
+	private Label labelNaoEditavel;
 
 	@FXML
 	private Button botaoCadastrar;
@@ -113,37 +119,97 @@ public class DevedorCadastroController {
 		fecharStage();
 	}
 
-	public void preencherDesabilitarCampos(Devedor devedor) {
-		
+	public void preencherCampos(Devedor devedor, boolean edicao) {
+
 		//Campo Devedor
 		fieldNomeDevedor.setText(devedor.getNome());
-		fieldNomeDevedor.setEditable(false);
 		fieldCpfDevedor.setText(devedor.getCpf());
-		fieldCpfDevedor.setEditable(false);
 		dateNascimentoDevedor.setValue(devedor.getDataNascimento());
-		dateNascimentoDevedor.setEditable(false);
-		
+
 		//Campo Divida
 		fieldDescricaoDivida.setText(devedor.getDivida().getDescricao());
-		fieldDescricaoDivida.setEditable(false);
 		fieldValorDivida.setText(devedor.getDivida().getValor().toString());
-		fieldValorDivida.setEditable(false);
 		dateDivida.setValue(devedor.getDivida().getDataDivida());
-		dateDivida.setEditable(false);
 		
 		//Campo Endereco
 		fieldRuaEndereco.setText(devedor.getEndereco().getRua());
-		fieldRuaEndereco.setEditable(false);
 		fieldNumeroEndereco.setText(devedor.getEndereco().getNumero());
-		fieldNumeroEndereco.setEditable(false);
 		fieldBairroEndereco.setText(devedor.getEndereco().getBairro());
-		fieldBairroEndereco.setEditable(false);
 		fieldCidadeEndereco.setText(devedor.getEndereco().getCidade());
-		fieldCidadeEndereco.setEditable(false);
 		fieldEstadoEndereco.setText(devedor.getEndereco().getEstado());
-		fieldEstadoEndereco.setEditable(false);
 		fieldPontoReferenciaEndereco.setText(devedor.getEndereco().getPontoReferencia());
-		fieldPontoReferenciaEndereco.setEditable(false);
+		
+		//Botao Editar
+		botaoCadastrar.setText("Editar");
+		botaoCadastrar.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				salvarEdicao(devedor);
+			}
+		});
+		
+		if(!edicao) {
+			
+			//Alterando botoes
+			botaoCadastrar.setVisible(false);;
+			botaoCancelar.setText("Voltar");
+			
+			//Habilitando label com mensagem
+			labelNaoEditavel.setVisible(true);
+			
+			fieldNomeDevedor.setEditable(false);
+			fieldCpfDevedor.setEditable(false);
+			dateNascimentoDevedor.setEditable(false);
+			dateNascimentoDevedor.setDisable(true);
+			
+			fieldDescricaoDivida.setEditable(false);
+			fieldValorDivida.setEditable(false);
+			dateDivida.setEditable(false);
+			dateDivida.setDisable(true);
+			
+			fieldRuaEndereco.setEditable(false);
+			fieldNumeroEndereco.setEditable(false);
+			fieldBairroEndereco.setEditable(false);
+			fieldCidadeEndereco.setEditable(false);
+			fieldEstadoEndereco.setEditable(false);
+			fieldPontoReferenciaEndereco.setEditable(false);
+
+		} 
+		
+	}
+	
+	private void salvarEdicao(Devedor devedor) {
+		
+		DividaDao daoDivida = new DividaDao();
+		
+		Divida dividaAlterada = new Divida(Double.parseDouble(fieldValorDivida.getText()), dateDivida.getValue(),
+				fieldDescricaoDivida.getText());
+		
+		dividaAlterada.setId(devedor.getDivida().getId());
+		
+		daoDivida.atualizar(dividaAlterada);
+		
+		EnderecoDao daoEndereco = new EnderecoDao();
+		
+		Endereco enderecoAlterado = new Endereco(fieldRuaEndereco.getText(), fieldNumeroEndereco.getText(),
+				fieldBairroEndereco.getText(), fieldCidadeEndereco.getText(), fieldEstadoEndereco.getText(),
+				fieldPontoReferenciaEndereco.getText());
+		
+		enderecoAlterado.setId(devedor.getEndereco().getId());
+		
+		daoEndereco.atualizar(enderecoAlterado);
+		
+		DevedorDao daoDevedor = new DevedorDao();
+		
+		Devedor devedorAlterado = new Devedor(dividaAlterada, fieldNomeDevedor.getText(), fieldCpfDevedor.getText(),
+				dateNascimentoDevedor.getValue(), enderecoAlterado);
+		devedorAlterado.setId(devedor.getId());
+		
+		daoDevedor.atualizar(devedorAlterado);
+		
+		fecharStage();
+		
+		atualizar();
 		
 	}
 	
