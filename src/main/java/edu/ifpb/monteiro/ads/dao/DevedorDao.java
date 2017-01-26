@@ -139,6 +139,58 @@ public class DevedorDao {
 		return devedor;
 	
 	}
+	
+	public ArrayList<Devedor> buscarPorNome(String nomeDevedor) {
+
+		ArrayList<Devedor> devedores = new ArrayList<>();
+		
+		DividaDao daoDivida = new DividaDao();
+		EnderecoDao daoEndereco = new EnderecoDao();
+
+		String sql = "SELECT * FROM devedores WHERE UPPER(nome) LIKE UPPER(?)";
+
+		Devedor devedor = null;
+
+		try {
+
+			PreparedStatement statement = conexao.prepareStatement(sql);
+			statement.setString(1, "%"+nomeDevedor+"%");
+
+			ResultSet result = statement.executeQuery();
+
+			Divida divida;
+			Endereco endereco;
+
+			while (result.next()) {
+
+				devedor = new Devedor();
+				devedor.setId(result.getInt("id"));
+				
+				divida = daoDivida.buscarPorID(result.getInt("id_divida"));
+				
+				devedor.setDivida(divida);
+				devedor.setNome(result.getString("nome"));
+				devedor.setCpf(result.getString("cpf"));
+				devedor.setDataNascimento(result.getDate("data_nascimento").toLocalDate());
+				
+				endereco = daoEndereco.buscarPorID(result.getInt("id_endereco"));
+				
+				devedor.setEndereco(endereco);
+				
+				devedores.add(devedor);
+
+			}
+
+			statement.close();
+			result.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return devedores;
+	
+	}
 
 	/**
 	 * Falta montar o devedor com os atributos completos (endereco)
