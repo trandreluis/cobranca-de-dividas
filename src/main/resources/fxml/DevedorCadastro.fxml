@@ -139,5 +139,10 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
       </GridPane>
+      <Label fx:id="labelNaoEditavel" layoutX="265.0" layoutY="202.0" text="NÃO EDITÁVEL" visible="false">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
