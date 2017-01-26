@@ -50,6 +50,18 @@ public class DividaDao {
 		System.out.println("EXCLUSAO DA DIDIVA COM ID: 2002");
 		dao.excluir(2002);
 		
+		System.out.println("ALTERANDO DIVIDA COM ID: 701");
+		
+		Divida dividaSemAlteracoes = dao.buscarPorID(701);
+		
+		dividaSemAlteracoes.setDataDivida(LocalDate.now());
+		dividaSemAlteracoes.setDescricao("CD");
+		dividaSemAlteracoes.setValor(3.5);
+		
+		Divida dividaAlterada = dividaSemAlteracoes;
+		
+		dao.atualizar(dividaAlterada);
+		
 		ArrayList<Divida> dividasAtual = dao.buscarTodos();
 
 		System.out.println("------ TODOS OS CADASTRADOS ------");
@@ -164,6 +176,26 @@ public class DividaDao {
 
 	}
 
+	public void atualizar(Divida divida) {
+
+		String sql = "UPDATE dividas SET valor = ?, data_divida = ?, descricao = ? WHERE id = (?)";
+
+		try {
+
+			PreparedStatement statement = conexao.prepareStatement(sql);
+			statement.setDouble(1, divida.getValor());
+			statement.setDate(2, Date.valueOf(divida.getDataDivida()));
+			statement.setString(3, divida.getDescricao());
+			statement.setInt(4, divida.getId());
+
+			statement.execute();
+			statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+	
 	public void excluir(Integer idDivida) {
 
 		String sql = "DELETE FROM dividas WHERE id = (?)";

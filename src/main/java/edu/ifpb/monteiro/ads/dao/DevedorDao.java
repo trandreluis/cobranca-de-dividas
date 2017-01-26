@@ -253,6 +253,26 @@ public class DevedorDao {
 		return devedores;
 	}
 
+	public void atualizar(Devedor devedor) {
+
+		String sql = "UPDATE devedores SET nome = ?, cpf = ?, data_nascimento = ? WHERE id = (?)";
+
+		try {
+
+			PreparedStatement statement = conexao.prepareStatement(sql);
+			statement.setString(1, devedor.getNome());
+			statement.setString(2, devedor.getCpf());
+			statement.setDate(3, Date.valueOf(devedor.getDataNascimento()));
+			statement.setInt(4, devedor.getId());
+
+			statement.execute();
+			statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+	
 	public void excluir(Integer idDevedor) {
 
 		DividaDao daoDivida = new DividaDao();

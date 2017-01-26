@@ -29,7 +29,7 @@ public class EnderecoDao {
 
 		EnderecoDao dao = new EnderecoDao();
 
-//		dao.salvar(endereco);
+		dao.salvar(endereco);
 
 		ArrayList<Endereco> enderecos = dao.buscarTodos();
 
@@ -176,11 +176,6 @@ public class EnderecoDao {
 
 	}
 
-	/**
-	 * Metodo ainda incompleto
-	 * 
-	 * @param endereco
-	 */
 	public void atualizar(Endereco endereco) {
 
 		String sql = "UPDATE enderecos SET rua = ?, numero = ?, bairro = ?, cidade = ?,"
