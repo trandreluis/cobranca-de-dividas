@@ -125,14 +125,6 @@ public class JanelaPrincipalController {
 	@FXML
 	public void excluirDevedor() {
 
-		Alert alerta = new Alert(AlertType.INFORMATION);
-
-		alerta.setTitle("Informacao");
-		alerta.setHeaderText("Sucesso!");
-		alerta.setContentText("Excluir devedor!");
-
-		alerta.showAndWait();
-		
 		Integer idDevedor = tabelaDevedores.getSelectionModel().getSelectedItem().getId();
 
 		DevedorDao daoDevedor = new DevedorDao();
@@ -152,6 +144,13 @@ public class JanelaPrincipalController {
 		alerta.setContentText("Expandir devedor!");
 
 		alerta.showAndWait();
+		
+		DevedorCadastroJanela cadastroDevedor = new DevedorCadastroJanela(root);
+		cadastroDevedor.show();
+		
+		Devedor devedor = tabelaDevedores.getSelectionModel().getSelectedItem();
+
+		DevedorCadastroJanela.getController().preencherDesabilitarCampos(devedor);
 		
 	}
 
