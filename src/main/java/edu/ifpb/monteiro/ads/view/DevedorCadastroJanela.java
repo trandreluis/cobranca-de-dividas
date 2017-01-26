@@ -2,6 +2,7 @@ package edu.ifpb.monteiro.ads.view;
 
 import java.io.IOException;
 
+import edu.ifpb.monteiro.ads.controller.DevedorCadastroController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -21,6 +22,7 @@ import javafx.stage.Stage;
 public class DevedorCadastroJanela extends Stage {
 
 	AnchorPane root;
+	private static FXMLLoader fxml;
 
 	public DevedorCadastroJanela(Pane pai) {
 
@@ -36,9 +38,12 @@ public class DevedorCadastroJanela extends Stage {
 		// Define esta janela como modal, nao permitindo que se mexa na
 		// principal enquanto esta nao for finalizada
 		initModality(Modality.WINDOW_MODAL);
-		
+
 		try {
-			root = FXMLLoader.load(getClass().getResource("/fxml/DevedorCadastro.fxml"));
+
+			fxml = new FXMLLoader(getClass().getResource("/fxml/DevedorCadastro.fxml"));
+			root = (AnchorPane) fxml.load();
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -46,6 +51,13 @@ public class DevedorCadastroJanela extends Stage {
 		Scene cena = new Scene(root);
 		setScene(cena);
 
+	}
+
+	public static DevedorCadastroController getController() {
+
+		DevedorCadastroController controller = (DevedorCadastroController) fxml.getController();
+
+		return controller;
 	}
 
 }
