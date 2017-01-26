@@ -35,7 +35,7 @@ public class DividaDao {
 		System.out.println("Obtendo ID");
 		dao.salvar(divida);
 		System.out.println("FIM");
-		
+
 		ArrayList<Divida> dividas = dao.buscarTodos();
 
 		System.out.println("------ TODOS OS CADASTRADOS ------");
@@ -46,6 +46,17 @@ public class DividaDao {
 
 		System.out.println("------ BUSCADO DIVIDA COM ID: 401 ------");
 		System.out.println(dao.buscarPorID(401));
+		
+		System.out.println("EXCLUSAO DA DIDIVA COM ID: 2002");
+		dao.excluir(2002);
+		
+		ArrayList<Divida> dividasAtual = dao.buscarTodos();
+
+		System.out.println("------ TODOS OS CADASTRADOS ------");
+
+		for (Divida d : dividasAtual) {
+			System.out.println(d);
+		}
 
 	}
 
@@ -55,7 +66,8 @@ public class DividaDao {
 
 		try {
 
-			//Instanciando o PreparedStatement solicitando o retorno das chaves (ID) geradas.
+			// Instanciando o PreparedStatement solicitando o retorno das chaves
+			// (ID) geradas.
 			PreparedStatement statement = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
 			statement.setDouble(1, divida.getValor());
@@ -64,18 +76,18 @@ public class DividaDao {
 
 			statement.execute();
 
-			//Obtendo ResultSet com as chaves geradas.
+			// Obtendo ResultSet com as chaves geradas.
 			ResultSet keys = statement.getGeneratedKeys();
-			
-			//Se alguma chave tiver sido criada com o execute() anterior
-			if(keys.next()) {
+
+			// Se alguma chave tiver sido criada com o execute() anterior
+			if (keys.next()) {
 				return keys.getInt(1);
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return null;
 
 	}
@@ -152,7 +164,20 @@ public class DividaDao {
 
 	}
 
-	public void apagar(long idDivida) {
+	public void excluir(Integer idDivida) {
+
+		String sql = "DELETE FROM dividas WHERE id = (?)";
+
+		try {
+
+			PreparedStatement statement = conexao.prepareStatement(sql);
+			statement.setInt(1, idDivida);
+
+			statement.execute();
+			statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
 	}
 

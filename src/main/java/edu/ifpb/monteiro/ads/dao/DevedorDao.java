@@ -60,6 +60,15 @@ public class DevedorDao {
 
 		System.out.println("------ DEVEDOR CADASTRADO COM ID: 201 ------");
 		System.out.println(daoDevedor.buscarPorID(201));
+		daoDevedor.excluir(101);
+		System.out.println("EXCLUINDO DEVEDOR COM ID: 101");
+		
+		ArrayList<Devedor> devedoresAtual = daoDevedor.buscarTodos();
+
+		System.out.println("------ TODOS OS CADASTRADOS ------");
+		for (Devedor d : devedoresAtual) {
+			System.out.println(d);
+		}
 		
 		
 	}
@@ -244,8 +253,35 @@ public class DevedorDao {
 		return devedores;
 	}
 
-	public void apagar(long idDevedor) {
+	public void excluir(Integer idDevedor) {
 
+		DividaDao daoDivida = new DividaDao();
+		EnderecoDao daoEndereco = new EnderecoDao();
+		
+		String sql = "DELETE FROM devedores WHERE id = (?)";
+		
+		try{
+			
+			Devedor devedor = buscarPorID(idDevedor);
+			
+			daoDivida.excluir(devedor.getDivida().getId());
+			daoEndereco.excluir(devedor.getEndereco().getId());
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+
+		try {
+			
+			PreparedStatement statement = conexao.prepareStatement(sql);
+			statement.setInt(1, idDevedor);
+
+			statement.execute();
+			statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 }

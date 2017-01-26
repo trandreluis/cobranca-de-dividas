@@ -41,6 +41,12 @@ public class EnderecoDao {
 
 		System.out.println("------ ENDERECO COM ID: 301 ------");
 		System.out.println(dao.buscarPorID(301));
+		System.out.println("EXCLUSAO DO ENDERECO COM ID: 401");
+		dao.excluir(401);
+		System.out.println("------ TODOS OS ENDERECOS CADASTRADOS ------");
+		for(Endereco end : enderecos) {
+			System.out.println(end);
+		}
 		
 	}
 
@@ -158,8 +164,21 @@ public class EnderecoDao {
 
 	}
 
-	public void apagar(long idEndereco) {
+	public void excluir(Integer idEndereco) {
 
+		String sql = "DELETE FROM enderecos WHERE id = (?)";
+
+		try {
+			
+			PreparedStatement statement = conexao.prepareStatement(sql);
+			statement.setInt(1, idEndereco);
+
+			statement.execute();
+			statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 }
