@@ -29,12 +29,12 @@ public class EnderecoDao {
 
 		EnderecoDao dao = new EnderecoDao();
 
-		dao.salvar(endereco);
-		
+//		dao.salvar(endereco);
+
 		ArrayList<Endereco> enderecos = dao.buscarTodos();
-		
+
 		System.out.println("------ TODOS OS ENDERECOS CADASTRADOS ------");
-		for(Endereco end : enderecos) {
+		for (Endereco end : enderecos) {
 			System.out.println(end);
 		}
 		System.out.println("------ FIM ------");
@@ -43,11 +43,24 @@ public class EnderecoDao {
 		System.out.println(dao.buscarPorID(301));
 		System.out.println("EXCLUSAO DO ENDERECO COM ID: 401");
 		dao.excluir(401);
+		Endereco enderecoSemAlteracao = dao.buscarPorID(1101);
+		System.out.println("ENDERECO SEM ALTERACAO: "+enderecoSemAlteracao);
+		enderecoSemAlteracao.setRua("Rua das Tabocas");
+		enderecoSemAlteracao.setBairro("São Geraldo");
+		enderecoSemAlteracao.setNumero("988899");
+		enderecoSemAlteracao.setEstado("RN");
+		enderecoSemAlteracao.setPontoReferencia("IFPB");
+		enderecoSemAlteracao.setCidade("Natal");
+		Endereco enderecoAlterado = enderecoSemAlteracao;
+		
+		dao.atualizar(enderecoAlterado);
+		System.out.println("ENDERECO ALTERADO: "+dao.buscarPorID(1101));
+		
 		System.out.println("------ TODOS OS ENDERECOS CADASTRADOS ------");
-		for(Endereco end : enderecos) {
+		for (Endereco end : enderecos) {
 			System.out.println(end);
 		}
-		
+
 	}
 
 	public Integer salvar(Endereco endereco) {
@@ -96,9 +109,8 @@ public class EnderecoDao {
 			PreparedStatement statement = conexao.prepareStatement(sql);
 
 			statement.setInt(1, idEndereco);
-			
-			ResultSet result = statement.executeQuery();
 
+			ResultSet result = statement.executeQuery();
 
 			while (result.next()) {
 
@@ -164,12 +176,41 @@ public class EnderecoDao {
 
 	}
 
+	/**
+	 * Metodo ainda incompleto
+	 * 
+	 * @param endereco
+	 */
+	public void atualizar(Endereco endereco) {
+
+		String sql = "UPDATE enderecos SET rua = ?, numero = ?, bairro = ?, cidade = ?,"
+				+ " estado = ?, ponto_referencia = ?  WHERE id = (?)";
+
+		try {
+
+			PreparedStatement statement = conexao.prepareStatement(sql);
+			statement.setString(1, endereco.getRua());
+			statement.setString(2, endereco.getNumero());
+			statement.setString(3, endereco.getBairro());
+			statement.setString(4, endereco.getCidade());
+			statement.setString(5, endereco.getEstado());
+			statement.setString(6, endereco.getPontoReferencia());
+			statement.setInt(7, endereco.getId());
+
+			statement.execute();
+			statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
 	public void excluir(Integer idEndereco) {
 
 		String sql = "DELETE FROM enderecos WHERE id = (?)";
 
 		try {
-			
+
 			PreparedStatement statement = conexao.prepareStatement(sql);
 			statement.setInt(1, idEndereco);
 
@@ -178,7 +219,7 @@ public class EnderecoDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }
