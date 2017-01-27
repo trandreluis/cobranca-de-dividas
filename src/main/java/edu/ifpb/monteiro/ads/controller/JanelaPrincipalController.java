@@ -1,16 +1,14 @@
 package edu.ifpb.monteiro.ads.controller;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 import edu.ifpb.monteiro.ads.dao.DevedorDao;
 import edu.ifpb.monteiro.ads.model.Devedor;
 import edu.ifpb.monteiro.ads.view.DevedorCadastroJanela;
+import edu.ifpb.monteiro.ads.view.JanelaNegociarCadastro;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -74,15 +72,7 @@ public class JanelaPrincipalController {
 	@FXML
 	public void initialize() {
 
-		ObservableList<Devedor> devedoresObservableList = FXCollections.observableArrayList();
-
-		devedoresObservableList = FXCollections.observableArrayList();
-		
-		ArrayList<Devedor> devedoresList = daoDevedor.buscarTodos();
-
-		for (Devedor d : devedoresList) {
-			devedoresObservableList.add(d);
-		}
+		ObservableList<Devedor> devedoresObservableList = FXCollections.observableArrayList(daoDevedor.buscarTodos());
 
 		colunaNomeDevedor.setCellValueFactory(valorDaCelula -> valorDaCelula.getValue().nome());
 		colunaCpfDevedor.setCellValueFactory(valorDaCelula -> valorDaCelula.getValue().cpf());
@@ -147,14 +137,15 @@ public class JanelaPrincipalController {
 
 	@FXML
 	public void negociarComDevedor() {
+		
+		JanelaNegociarCadastro negociarCadastro = new JanelaNegociarCadastro(root);
+		
+		Devedor devedor = tabelaDevedores.getSelectionModel().getSelectedItem();
+		
+		JanelaNegociarCadastro.getController().preencherCampos(devedor);
 
-		Alert alerta = new Alert(AlertType.INFORMATION);
+		negociarCadastro.show();
 
-		alerta.setTitle("Informacao");
-		alerta.setHeaderText("Sucesso!");
-		alerta.setContentText("Negociar com devedor!");
-
-		alerta.showAndWait();
 
 	}
 	

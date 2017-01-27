@@ -2,7 +2,7 @@ package edu.ifpb.monteiro.ads.view;
 
 import java.io.IOException;
 
-import edu.ifpb.monteiro.ads.controller.DevedorCadastroController;
+import edu.ifpb.monteiro.ads.controller.JanelaNegociarController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -19,15 +19,15 @@ import javafx.stage.Stage;
  *
  */
 
-public class DevedorCadastroJanela extends Stage {
+public class JanelaNegociarCadastro extends Stage {
 
 	AnchorPane root;
 	private static FXMLLoader fxml;
 
-	public DevedorCadastroJanela(Pane pai) {
+	public JanelaNegociarCadastro(Pane pai) {
 
 		setResizable(false);
-		setTitle("Cadastro de Devedor");
+		setTitle("Janela de Negócio");
 
 		// Define a janela principal como dona desta
 		initOwner(pai.getScene().getWindow());
@@ -41,7 +41,7 @@ public class DevedorCadastroJanela extends Stage {
 
 		try {
 
-			fxml = new FXMLLoader(getClass().getResource("/fxml/JanelaDevedorCadastro.fxml"));
+			fxml = new FXMLLoader(getClass().getResource("/fxml/JanelaNegociar.fxml"));
 			root = (AnchorPane) fxml.load();
 
 		} catch (IOException e) {
@@ -53,9 +53,9 @@ public class DevedorCadastroJanela extends Stage {
 
 	}
 
-	public static DevedorCadastroController getController() {
+	public static JanelaNegociarController getController() {
 
-		DevedorCadastroController controller = (DevedorCadastroController) fxml.getController();
+		JanelaNegociarController controller = (JanelaNegociarController) fxml.getController();
 
 		return controller;
 	}
