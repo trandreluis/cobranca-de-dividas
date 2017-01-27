@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="446.0" prefWidth="796.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ifpb.monteiro.ads.controller.JanelaParcelaController">
+   <children>
+      <TableView fx:id="tabelaParcelas" layoutX="10.0" layoutY="72.0" prefHeight="298.0" prefWidth="420.0">
+        <columns>
+          <TableColumn fx:id="colunaValorParcela" editable="false" prefWidth="101.0" resizable="false" sortable="false" text="Valor" />
+          <TableColumn fx:id="colunaDataParcela" editable="false" minWidth="0.0" prefWidth="157.0" resizable="false" sortable="false" text="Data de vencimento" />
+            <TableColumn fx:id="colunaParcelaAtrasada" editable="false" minWidth="0.0" prefWidth="77.0" resizable="false" sortable="false" text="Atrasada" />
+            <TableColumn fx:id="colunaParcelaPaga" editable="false" minWidth="0.0" prefWidth="84.0" resizable="false" sortable="false" text="Paga" />
+        </columns>
+      </TableView>
+      <HBox layoutX="119.0" layoutY="400.0" prefHeight="32.0" prefWidth="311.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="119.0" AnchorPane.rightAnchor="366.0">
+         <children>
+            <Button fx:id="botaoCancelarPagamento" mnemonicParsing="false" onAction="#cancelarPagamento" prefHeight="30.0" prefWidth="130.0" text="Cancelar pagamento">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="botaoPagarParcela" mnemonicParsing="false" onAction="#pagarParcela" prefHeight="30.0" prefWidth="130.0" text="Definir como paga">
+               <HBox.margin>
+                  <Insets left="50.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <Text layoutX="107.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Parcelas da divida negociada">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="536.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dados complementares">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <PieChart fx:id="graficoPizza" layoutX="486.0" layoutY="108.0" prefHeight="227.0" prefWidth="287.0" title="Andamento do pagamento" />
+      <Button fx:id="botaoVoltar" layoutX="662.0" layoutY="402.0" mnemonicParsing="false" onAction="#voltar" prefHeight="32.0" prefWidth="120.0" text="Voltar" />
+   </children>
+</AnchorPane>
