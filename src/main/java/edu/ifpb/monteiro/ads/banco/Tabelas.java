@@ -14,23 +14,20 @@ import java.sql.SQLException;
 
 public class Tabelas {
 
-	private Connection conexao;
+	private static Connection conexao;
 
 	public Tabelas() {
 		conexao = ConexaoDB.getConnection();
 	}
 
-	public static void main(String[] args) {
-
-		Tabelas t = new Tabelas();
-		t.criarTabelaDevedores();
-		t.criarTabelaEnderencos();
-		t.criarTabelaDividas();
-		t.criarTabelaParcelas();
-		
+	public void criarBanco() {
+		criarTabelaDevedores();
+		criarTabelaEnderencos();
+		criarTabelaDividas();
+		criarTabelaParcelas();
 	}
-
-	public void criarTabelaDevedores() {
+	
+	private void criarTabelaDevedores() {
 
 		String sql = "CREATE TABLE devedores(id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY"
 				+ " (START WITH 1, INCREMENT BY 1), id_divida INTEGER NOT NULL,"
@@ -48,7 +45,7 @@ public class Tabelas {
 
 	}
 
-	public void criarTabelaEnderencos() {
+	private void criarTabelaEnderencos() {
 
 		String sql = "CREATE TABLE enderecos(id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY"
 				+ " (START WITH 1, INCREMENT BY 1), rua VARCHAR(60) NOT NULL, numero VARCHAR(10) NOT NULL,"
@@ -66,7 +63,7 @@ public class Tabelas {
 
 	}
 
-	public void criarTabelaDividas() {
+	private void criarTabelaDividas() {
 
 		String sql = "CREATE TABLE dividas(id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY"
 				+ " (START WITH 1, INCREMENT BY 1), valor DOUBLE NOT NULL, data_divida DATE NOT NULL,"
@@ -83,7 +80,7 @@ public class Tabelas {
 
 	}
 
-	public void criarTabelaParcelas() {
+	private void criarTabelaParcelas() {
 
 		String sql = "CREATE TABLE parcelas(id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY"
 				+ " (START WITH 1, INCREMENT BY 1), id_divida INTEGER NOT NULL, valor_parcela DOUBLE NOT NULL,"
