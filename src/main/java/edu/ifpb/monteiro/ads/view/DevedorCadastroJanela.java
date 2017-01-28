@@ -27,7 +27,7 @@ public class DevedorCadastroJanela extends Stage {
 	public DevedorCadastroJanela(Pane pai) {
 
 		setResizable(false);
-		setTitle("Cadastro de Devedor");
+		setTitle("Devedor");
 
 		// Define a janela principal como dona desta
 		initOwner(pai.getScene().getWindow());
