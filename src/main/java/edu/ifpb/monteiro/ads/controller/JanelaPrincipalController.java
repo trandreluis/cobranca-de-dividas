@@ -116,15 +116,31 @@ public class JanelaPrincipalController {
 		int linhaSelecionada = tabelaDevedores.getSelectionModel().getSelectedIndex();
 
 		if (validador.editarDevedor(linhaSelecionada)) {
+			
+			Integer idDevedor = tabelaDevedores.getSelectionModel().getSelectedItem().getId();
+			
+			DevedorDao daoDevedor = new DevedorDao();
 
-			DevedorCadastroJanela cadastroDevedor = new DevedorCadastroJanela(root);
-			cadastroDevedor.show();
-
-			Devedor devedor = tabelaDevedores.getSelectionModel().getSelectedItem();
-
-			DevedorCadastroJanela.getController().preencherCampos(devedor, true);
+			Devedor devedorVerificado = daoDevedor.buscarPorID(idDevedor);
+			
+			if (!daoDevedor.negociouDivida(devedorVerificado.getDivida().getId())) {
+				
+				DevedorCadastroJanela cadastroDevedor = new DevedorCadastroJanela(root);
+				cadastroDevedor.show();
+				Devedor devedor = tabelaDevedores.getSelectionModel().getSelectedItem();
+				DevedorCadastroJanela.getController().preencherCampos(devedor, true);
+			
+			} else {
+				
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("Erro!");
+				alert.setHeaderText(null);
+				alert.setContentText(
+						"Este Devedor já negociou sua dívida, é impossível editá-lo!");
+				alert.showAndWait();
+				
+			}
 		}
-
 	}
 
 	@FXML
