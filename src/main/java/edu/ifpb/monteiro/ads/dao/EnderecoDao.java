@@ -22,47 +22,6 @@ public class EnderecoDao {
 
 	private Connection conexao = ConexaoDB.getConnection();
 
-	public static void main(String[] args) {
-
-		Endereco endereco = new Endereco("Rua Floriano Peixoto", "2301", "Alto do rio branco", "Sertania", "PE",
-				"Proximo a saida para Arcoverde");
-
-		EnderecoDao dao = new EnderecoDao();
-
-		dao.salvar(endereco);
-
-		ArrayList<Endereco> enderecos = dao.buscarTodos();
-
-		System.out.println("------ TODOS OS ENDERECOS CADASTRADOS ------");
-		for (Endereco end : enderecos) {
-			System.out.println(end);
-		}
-		System.out.println("------ FIM ------");
-
-		System.out.println("------ ENDERECO COM ID: 301 ------");
-		System.out.println(dao.buscarPorID(301));
-		System.out.println("EXCLUSAO DO ENDERECO COM ID: 401");
-		dao.excluir(401);
-		Endereco enderecoSemAlteracao = dao.buscarPorID(1101);
-		System.out.println("ENDERECO SEM ALTERACAO: "+enderecoSemAlteracao);
-		enderecoSemAlteracao.setRua("Rua das Tabocas");
-		enderecoSemAlteracao.setBairro("São Geraldo");
-		enderecoSemAlteracao.setNumero("988899");
-		enderecoSemAlteracao.setEstado("RN");
-		enderecoSemAlteracao.setPontoReferencia("IFPB");
-		enderecoSemAlteracao.setCidade("Natal");
-		Endereco enderecoAlterado = enderecoSemAlteracao;
-		
-		dao.atualizar(enderecoAlterado);
-		System.out.println("ENDERECO ALTERADO: "+dao.buscarPorID(1101));
-		
-		System.out.println("------ TODOS OS ENDERECOS CADASTRADOS ------");
-		for (Endereco end : enderecos) {
-			System.out.println(end);
-		}
-
-	}
-
 	public Integer salvar(Endereco endereco) {
 
 		String sql = "INSERT INTO enderecos(rua, numero, bairro, cidade, estado, ponto_referencia) VALUES (?,?,?,?,?,?)";

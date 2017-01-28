@@ -5,7 +5,6 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 import edu.ifpb.monteiro.ads.banco.ConexaoDB;
@@ -25,54 +24,6 @@ import edu.ifpb.monteiro.ads.model.Parcela;
 public class DevedorDao {
 
 	private Connection conexao = ConexaoDB.getConnection();
-
-	public static void main(String[] args) {
-
-		Divida divida = new Divida(120, LocalDate.of(2014, 12, 9), "Sapato Social");
-
-		DividaDao daoDivida = new DividaDao();
-		
-		int idGeradoDivida = daoDivida.salvar(divida);
-		
-		Divida dividaRecuperadaDoBanco = daoDivida.buscarPorID(idGeradoDivida);
-		
-		Endereco endereco = new Endereco("Rua Alves Lucena", "33", "Vila da Cohab", "Arcoverde", "Pernambuco",
-				"Proximo a saida pra Pesqueira");
-
-		EnderecoDao daoEndereco = new EnderecoDao();
-		
-		int idGeradoEndereco = daoEndereco.salvar(endereco);
-		
-		Endereco enderecoRecuperadoDoBanco = daoEndereco.buscarPorID(idGeradoEndereco);
-		
-		Devedor devedor = new Devedor(dividaRecuperadaDoBanco, "Andre", "426765326782", LocalDate.of(2014, 12, 9), enderecoRecuperadoDoBanco);
-
-		DevedorDao daoDevedor = new DevedorDao();
-
-		daoDevedor.salvar(devedor);
-
-		ArrayList<Devedor> devedores = daoDevedor.buscarTodos();
-
-		System.out.println("------ TODOS OS CADASTRADOS ------");
-		for (Devedor d : devedores) {
-			System.out.println(d);
-		}
-		System.out.println("------ FIM ------");
-
-		System.out.println("------ DEVEDOR CADASTRADO COM ID: 201 ------");
-		System.out.println(daoDevedor.buscarPorID(201));
-		daoDevedor.excluir(101);
-		System.out.println("EXCLUINDO DEVEDOR COM ID: 101");
-		
-		ArrayList<Devedor> devedoresAtual = daoDevedor.buscarTodos();
-
-		System.out.println("------ TODOS OS CADASTRADOS ------");
-		for (Devedor d : devedoresAtual) {
-			System.out.println(d);
-		}
-		
-		
-	}
 
 	public void salvar(Devedor devedor) {
 
@@ -99,9 +50,10 @@ public class DevedorDao {
 
 	/**
 	 * Falta montar o devedor com os atributos completos (endereco)
+	 * 
 	 * @return
 	 */
-	
+
 	public Devedor buscarPorID(Integer idDevedor) {
 
 		DividaDao daoDivida = new DividaDao();
@@ -125,16 +77,16 @@ public class DevedorDao {
 
 				devedor = new Devedor();
 				devedor.setId(result.getInt("id"));
-				
+
 				divida = daoDivida.buscarPorID(result.getInt("id_divida"));
-				
+
 				devedor.setDivida(divida);
 				devedor.setNome(result.getString("nome"));
 				devedor.setCpf(result.getString("cpf"));
 				devedor.setDataNascimento(result.getDate("data_nascimento").toLocalDate());
-				
+
 				endereco = daoEndereco.buscarPorID(result.getInt("id_endereco"));
-				
+
 				devedor.setEndereco(endereco);
 
 			}
@@ -147,13 +99,13 @@ public class DevedorDao {
 		}
 
 		return devedor;
-	
+
 	}
-	
+
 	public ArrayList<Devedor> buscarPorNome(String nomeDevedor) {
 
 		ArrayList<Devedor> devedores = new ArrayList<>();
-		
+
 		DividaDao daoDivida = new DividaDao();
 		EnderecoDao daoEndereco = new EnderecoDao();
 
@@ -164,7 +116,7 @@ public class DevedorDao {
 		try {
 
 			PreparedStatement statement = conexao.prepareStatement(sql);
-			statement.setString(1, "%"+nomeDevedor+"%");
+			statement.setString(1, "%" + nomeDevedor + "%");
 
 			ResultSet result = statement.executeQuery();
 
@@ -175,18 +127,18 @@ public class DevedorDao {
 
 				devedor = new Devedor();
 				devedor.setId(result.getInt("id"));
-				
+
 				divida = daoDivida.buscarPorID(result.getInt("id_divida"));
-				
+
 				devedor.setDivida(divida);
 				devedor.setNome(result.getString("nome"));
 				devedor.setCpf(result.getString("cpf"));
 				devedor.setDataNascimento(result.getDate("data_nascimento").toLocalDate());
-				
+
 				endereco = daoEndereco.buscarPorID(result.getInt("id_endereco"));
-				
+
 				devedor.setEndereco(endereco);
-				
+
 				devedores.add(devedor);
 
 			}
@@ -199,7 +151,7 @@ public class DevedorDao {
 		}
 
 		return devedores;
-	
+
 	}
 
 	public ArrayList<Devedor> buscarTodos() {
@@ -224,20 +176,20 @@ public class DevedorDao {
 
 				devedor = new Devedor();
 				devedor.setId(result.getInt("id"));
-				
+
 				divida = daoDivida.buscarPorID(result.getInt("id_divida"));
-				
+
 				devedor.setDivida(divida);
 				devedor.setNome(result.getString("nome"));
 				devedor.setCpf(result.getString("cpf"));
 				devedor.setDataNascimento(result.getDate("data_nascimento").toLocalDate());
 
 				endereco = daoEndereco.buscarPorID(result.getInt("id_endereco"));
-				
+
 				devedor.setEndereco(endereco);
-				
+
 				devedores.add(devedor);
-				
+
 			}
 
 			statement.close();
@@ -251,19 +203,19 @@ public class DevedorDao {
 	}
 
 	public boolean negociouDivida(Integer idDivida) {
-		
+
 		ParcelaDao daoParcela = new ParcelaDao();
-		
+
 		ArrayList<Parcela> parcelas = daoParcela.buscarPorDivida(idDivida);
-		
-		if(parcelas.size() == 0) {
-			return false;			
+
+		if (parcelas.size() == 0) {
+			return false;
 		}
-		
+
 		return true;
-		
+
 	}
-	
+
 	public void atualizar(Devedor devedor) {
 
 		String sql = "UPDATE devedores SET nome = ?, cpf = ?, data_nascimento = ? WHERE id = (?)";
@@ -283,30 +235,30 @@ public class DevedorDao {
 		}
 
 	}
-	
+
 	public void excluir(Integer idDevedor) {
 
 		DividaDao daoDivida = new DividaDao();
 		EnderecoDao daoEndereco = new EnderecoDao();
 		ParcelaDao daoParcela = new ParcelaDao();
-		
+
 		String sql = "DELETE FROM devedores WHERE id = (?)";
-		
-		try{
-			
+
+		try {
+
 			Devedor devedor = buscarPorID(idDevedor);
-			
+
 			daoParcela.excluirPorDivida(devedor.getDivida().getId());
-			
+
 			daoDivida.excluir(devedor.getDivida().getId());
 			daoEndereco.excluir(devedor.getEndereco().getId());
-			
-		}catch(Exception e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		try {
-			
+
 			PreparedStatement statement = conexao.prepareStatement(sql);
 			statement.setInt(1, idDevedor);
 
@@ -315,7 +267,7 @@ public class DevedorDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }

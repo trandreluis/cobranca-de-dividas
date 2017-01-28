@@ -11,7 +11,6 @@ import java.util.ArrayList;
 
 import edu.ifpb.monteiro.ads.banco.ConexaoDB;
 import edu.ifpb.monteiro.ads.model.Divida;
-import edu.ifpb.monteiro.ads.model.Endereco;
 import edu.ifpb.monteiro.ads.model.Parcela;
 
 /**
@@ -25,64 +24,6 @@ import edu.ifpb.monteiro.ads.model.Parcela;
 public class ParcelaDao {
 
 	private Connection conexao = ConexaoDB.getConnection();
-
-	public static void main(String[] args) {
-
-		ParcelaDao daoParcela = new ParcelaDao();
-//
-//		EnderecoDao daoEndereco = new EnderecoDao();
-//		Endereco endereco = new Endereco("Avenida Joaquim", "118", "Centro", "Serrita", "PE", "Entrada da cidade");
-//		Integer idEndereco = daoEndereco.salvar(endereco);
-//		endereco.setId(idEndereco);
-//
-//		DividaDao daoDivida = new DividaDao();
-//		Divida divida = new Divida(100, LocalDate.now(), "Carro");
-//		Integer idDivida = daoDivida.salvar(divida);
-//		divida.setId(idDivida);
-//
-//		Parcela parcela = new Parcela(divida, 50, LocalDate.now());
-//		Parcela parcela2 = new Parcela(divida, 50, LocalDate.now());
-//
-//		daoParcela.salvar(parcela);
-//		daoParcela.salvar(parcela2);
-
-		System.out.println("RECUPERANDO TODAS AS PARCELAS");
-
-		ArrayList<Parcela> parcelas = daoParcela.buscarTodos();
-
-		for (Parcela p : parcelas) {
-			System.out.println(p);
-		}
-
-		// System.out.println("BUSCAR POR ID: 101");
-		// Parcela parcelaSemAlteracao = daoParcela.buscarPorID(101);
-		// System.out.println(parcelaSemAlteracao);
-
-		// Parcela parcelaAlterada = parcelaSemAlteracao;
-		//
-		// parcelaAlterada.setPaga(true);
-		//
-		// daoParcela.atualizar(parcelaAlterada);
-
-		// System.out.println("APAGANDO A PARCELA COM ID: 101");
-		// daoParcela.excluir(101);
-
-//		System.out.println("RECUPERANDO TODAS AS PARCELAS");
-//
-//		ArrayList<Parcela> parcelasAlteradas = daoParcela.buscarTodos();
-//
-//		for (Parcela p : parcelasAlteradas) {
-//			System.out.println(p);
-//		}
-//
-//		System.out.println("PARCELAS COM ID_DIVIDA: 901");
-//		ArrayList<Parcela> parcelasPorDivida = daoParcela.buscarPorDivida(901);
-//
-//		for (Parcela p : parcelasPorDivida) {
-//			System.out.println(p);
-//		}
-
-	}
 
 	public Integer salvar(Parcela parcela) {
 
@@ -311,7 +252,7 @@ public class ParcelaDao {
 		}
 
 	}
-	
+
 	public void excluir(Integer idParcela) {
 
 		String sql = "DELETE FROM parcelas WHERE id = (?)";
