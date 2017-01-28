@@ -21,11 +21,14 @@ import javafx.stage.Stage;
 
 public class JanelaNegociarCadastro extends Stage {
 
+	static Pane pai;
 	AnchorPane root;
 	private static FXMLLoader fxml;
 
 	public JanelaNegociarCadastro(Pane pai) {
-
+		
+		JanelaNegociarCadastro.pai = pai;
+		
 		setResizable(false);
 		setTitle("Janela de Negócio");
 
@@ -58,6 +61,10 @@ public class JanelaNegociarCadastro extends Stage {
 		JanelaNegociarController controller = (JanelaNegociarController) fxml.getController();
 
 		return controller;
+	}
+	
+	public static Pane getPai() {
+		return pai;
 	}
 
 }

@@ -26,7 +26,8 @@ public class Tabelas {
 		t.criarTabelaDevedores();
 		t.criarTabelaEnderencos();
 		t.criarTabelaDividas();
-
+		t.criarTabelaParcelas();
+		
 	}
 
 	public void criarTabelaDevedores() {
@@ -70,6 +71,23 @@ public class Tabelas {
 		String sql = "CREATE TABLE dividas(id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY"
 				+ " (START WITH 1, INCREMENT BY 1), valor DOUBLE NOT NULL, data_divida DATE NOT NULL,"
 				+ " descricao VARCHAR(60) NOT NULL)";
+
+		try {
+			PreparedStatement statement = conexao.prepareStatement(sql);
+
+			statement.execute();
+			statement.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public void criarTabelaParcelas() {
+
+		String sql = "CREATE TABLE parcelas(id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY"
+				+ " (START WITH 1, INCREMENT BY 1), id_divida INTEGER NOT NULL, valor_parcela DOUBLE NOT NULL,"
+				+ "data_parcela DATE NOT NULL, paga BOOLEAN NOT NULL, atrasada BOOLEAN NOT NULL)";
 
 		try {
 			PreparedStatement statement = conexao.prepareStatement(sql);

@@ -12,6 +12,7 @@ import edu.ifpb.monteiro.ads.banco.ConexaoDB;
 import edu.ifpb.monteiro.ads.model.Devedor;
 import edu.ifpb.monteiro.ads.model.Divida;
 import edu.ifpb.monteiro.ads.model.Endereco;
+import edu.ifpb.monteiro.ads.model.Parcela;
 
 /**
  * 
@@ -201,10 +202,6 @@ public class DevedorDao {
 	
 	}
 
-	/**
-	 * Falta montar o devedor com os atributos completos (endereco)
-	 * @return
-	 */
 	public ArrayList<Devedor> buscarTodos() {
 
 		ArrayList<Devedor> devedores = new ArrayList<Devedor>();
@@ -253,6 +250,20 @@ public class DevedorDao {
 		return devedores;
 	}
 
+	public boolean negociouDivida(Integer idDivida) {
+		
+		ParcelaDao daoParcela = new ParcelaDao();
+		
+		ArrayList<Parcela> parcelas = daoParcela.buscarPorDivida(idDivida);
+		
+		if(parcelas.size() == 0) {
+			return false;			
+		}
+		
+		return true;
+		
+	}
+	
 	public void atualizar(Devedor devedor) {
 
 		String sql = "UPDATE devedores SET nome = ?, cpf = ?, data_nascimento = ? WHERE id = (?)";
@@ -277,12 +288,15 @@ public class DevedorDao {
 
 		DividaDao daoDivida = new DividaDao();
 		EnderecoDao daoEndereco = new EnderecoDao();
+		ParcelaDao daoParcela = new ParcelaDao();
 		
 		String sql = "DELETE FROM devedores WHERE id = (?)";
 		
 		try{
 			
 			Devedor devedor = buscarPorID(idDevedor);
+			
+			daoParcela.excluirPorDivida(devedor.getDivida().getId());
 			
 			daoDivida.excluir(devedor.getDivida().getId());
 			daoEndereco.excluir(devedor.getEndereco().getId());

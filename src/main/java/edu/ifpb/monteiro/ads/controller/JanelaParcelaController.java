@@ -3,6 +3,7 @@ package edu.ifpb.monteiro.ads.controller;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import edu.ifpb.monteiro.ads.controller.validation.JanelaParcelaControllerValidation;
 import edu.ifpb.monteiro.ads.dao.ParcelaDao;
 import edu.ifpb.monteiro.ads.model.Devedor;
 import edu.ifpb.monteiro.ads.model.Parcela;
@@ -61,6 +62,8 @@ public class JanelaParcelaController {
 	private ParcelaDao daoParcela = new ParcelaDao();
 
 	private static boolean primeiraVez = true;
+	
+	private JanelaParcelaControllerValidation validador = new JanelaParcelaControllerValidation();
 
 	@FXML
 	public void initialize() {
@@ -88,29 +91,40 @@ public class JanelaParcelaController {
 	@FXML
 	public void pagarParcela() {
 
-		ParcelaDao daoParcela = new ParcelaDao();
+		int linhaSelecionada = tabelaParcelas.getSelectionModel().getSelectedIndex();
 
-		Parcela parcela = tabelaParcelas.getSelectionModel().getSelectedItem();
-		parcela.setPaga(true);
-
-		daoParcela.atualizar(parcela);
-
-		preecherTabelaParcelas(devedor);
+		if (validador.pagarParcela(linhaSelecionada)) {
+			
+			ParcelaDao daoParcela = new ParcelaDao();
+			
+			Parcela parcela = tabelaParcelas.getSelectionModel().getSelectedItem();
+			parcela.setPaga(true);
+			
+			daoParcela.atualizar(parcela);
+			
+			preecherTabelaParcelas(devedor);
+		
+		}
 
 	}
 
 	@FXML
 	public void cancelarPagamento() {
 
-		ParcelaDao daoParcela = new ParcelaDao();
+		int linhaSelecionada = tabelaParcelas.getSelectionModel().getSelectedIndex();
 
-		Parcela parcela = tabelaParcelas.getSelectionModel().getSelectedItem();
-		parcela.setPaga(false);
+		if (validador.cancelarPagamento(linhaSelecionada)) {
+			
+			ParcelaDao daoParcela = new ParcelaDao();
+			
+			Parcela parcela = tabelaParcelas.getSelectionModel().getSelectedItem();
+			parcela.setPaga(false);
+			
+			daoParcela.atualizar(parcela);
+			
+			preecherTabelaParcelas(devedor);
 
-		daoParcela.atualizar(parcela);
-
-		preecherTabelaParcelas(devedor);
-
+		}
 	}
 
 	public void preencherAtualizarGraficos() {
