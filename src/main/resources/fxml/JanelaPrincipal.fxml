@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.geometry.*?>
@@ -8,9 +9,9 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="768.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ifpb.monteiro.ads.controller.JanelaPrincipalController">
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="768.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ifpb.monteiro.ads.controller.JanelaPrincipalController">
    <children>
-      <TableView fx:id="tabelaDevedores" layoutX="10.0" layoutY="71.0" prefHeight="434.0" prefWidth="748.0" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="71.0">
+      <TableView fx:id="tabelaDevedores" layoutX="10.0" layoutY="88.0" prefHeight="457.0" prefWidth="748.0" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="88.0">
         <columns>
           <TableColumn fx:id="colunaNomeDevedor" editable="false" prefWidth="214.0" resizable="false" sortable="false" text="Nome" />
           <TableColumn fx:id="colunaCpfDevedor" editable="false" minWidth="0.0" prefWidth="183.0" resizable="false" sortable="false" text="CPF" />
@@ -52,7 +53,7 @@
             </Button>
          </children>
       </HBox>
-      <HBox layoutX="12.0" layoutY="23.0" prefHeight="24.0" prefWidth="327.0">
+      <HBox layoutX="12.0" layoutY="43.0" prefHeight="24.0" prefWidth="327.0">
          <children>
             <TextField fx:id="fieldBuscaNome" onAction="#buscarPeloNome" onKeyPressed="#buscarPeloNome" onKeyReleased="#buscarPeloNome" prefHeight="25.0" prefWidth="261.0" promptText="Informe o nome..." />
             <Button fx:id="botaoBuscar" mnemonicParsing="false" onAction="#buscarPeloNome" text="Buscar">
@@ -62,5 +63,12 @@
             </Button>
          </children>
       </HBox>
+      <Hyperlink fx:id="linkGithub" layoutX="575.0" layoutY="45.0" onAction="#cliqueLinkGithub" text="github.com/trandreluis" />
+      <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="725.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.422679901123047" AnchorPane.topAnchor="36.0">
+         <image>
+            <Image url="/icone/github.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="579.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Saiba mais sobre esse projeto" />
    </children>
 </AnchorPane>

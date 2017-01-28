@@ -1,5 +1,9 @@
 package edu.ifpb.monteiro.ads.controller;
 
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.util.Optional;
 
@@ -16,6 +20,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -76,12 +81,17 @@ public class JanelaPrincipalController {
 	@FXML
 	private Button botaoNegociar;
 
+	@FXML
+	private Hyperlink linkGithub;
+
 	private DevedorDao daoDevedor = new DevedorDao();
 
 	private JanelaPrincipalControllerValidation validador = new JanelaPrincipalControllerValidation();
 
 	@FXML
 	public void initialize() {
+
+		linkGithub.setFocusTraversable(false);
 
 		ObservableList<Devedor> devedoresObservableList = FXCollections.observableArrayList(daoDevedor.buscarTodos());
 
@@ -92,6 +102,23 @@ public class JanelaPrincipalController {
 		colunaDataDivida.setCellValueFactory(valorDaCelula -> valorDaCelula.getValue().getDivida().dataDivida());
 
 		tabelaDevedores.setItems(devedoresObservableList);
+
+	}
+
+	public void cliqueLinkGithub() {
+
+		Desktop desktop = Desktop.getDesktop();
+		try {
+			desktop.browse(new URI("https://www.github.com/trandreluis"));
+		} catch (IOException | URISyntaxException e) {
+
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Erro!");
+			alert.setHeaderText(null);
+			alert.setContentText("Não foi possível abrir o site!");
+			alert.showAndWait();
+
+		}
 
 	}
 
@@ -116,29 +143,28 @@ public class JanelaPrincipalController {
 		int linhaSelecionada = tabelaDevedores.getSelectionModel().getSelectedIndex();
 
 		if (validador.editarDevedor(linhaSelecionada)) {
-			
+
 			Integer idDevedor = tabelaDevedores.getSelectionModel().getSelectedItem().getId();
-			
+
 			DevedorDao daoDevedor = new DevedorDao();
 
 			Devedor devedorVerificado = daoDevedor.buscarPorID(idDevedor);
-			
+
 			if (!daoDevedor.negociouDivida(devedorVerificado.getDivida().getId())) {
-				
+
 				DevedorCadastroJanela cadastroDevedor = new DevedorCadastroJanela(root);
 				cadastroDevedor.show();
 				Devedor devedor = tabelaDevedores.getSelectionModel().getSelectedItem();
 				DevedorCadastroJanela.getController().preencherCampos(devedor, true);
-			
+
 			} else {
-				
+
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("Erro!");
 				alert.setHeaderText(null);
-				alert.setContentText(
-						"Este Devedor já negociou sua dívida, é impossível editá-lo!");
+				alert.setContentText("Este Devedor já negociou sua dívida, é impossível editá-lo!");
 				alert.showAndWait();
-				
+
 			}
 		}
 	}
