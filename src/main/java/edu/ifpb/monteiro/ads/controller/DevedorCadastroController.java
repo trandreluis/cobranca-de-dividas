@@ -10,16 +10,15 @@ import edu.ifpb.monteiro.ads.dao.EnderecoDao;
 import edu.ifpb.monteiro.ads.model.Devedor;
 import edu.ifpb.monteiro.ads.model.Divida;
 import edu.ifpb.monteiro.ads.model.Endereco;
+import edu.ifpb.monteiro.ads.util.MascarasFX;
 import edu.ifpb.monteiro.ads.view.MainApp;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -88,10 +87,12 @@ public class DevedorCadastroController {
 	@FXML
 	public void initialize() {
 
-		String padraoBrasileiro = "dd/MM/yyyy";
+		MascarasFX.mascaraData(dateNascimentoDevedor);
+		MascarasFX.mascaraData(dateDivida);
+		MascarasFX.mascaraCPF(fieldCpfDevedor);
+		MascarasFX.mascaraNumero(fieldValorDivida);
+		MascarasFX.mascaraNumero(fieldNumeroEndereco);
 
-		dateDivida.setPromptText(padraoBrasileiro);
-		dateNascimentoDevedor.setPromptText(padraoBrasileiro);
 	}
 
 	@FXML
