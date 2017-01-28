@@ -102,7 +102,7 @@ public class JanelaNegociarController {
 		
 		for(int i=1; i <= quantidadeParcelas; i++) {
 			
-			Parcela parcela = new Parcela(devedor.getDivida(), valorParcela, dataAtual.withMonth(i+1));
+			Parcela parcela = new Parcela(devedor.getDivida(), valorParcela, dataAtual.withMonth(i));
 			daoParcela.salvar(parcela);
 			
 		}
