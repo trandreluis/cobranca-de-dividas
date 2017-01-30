@@ -5,7 +5,7 @@ Projeto simples para a conclusão do minicurso de JavaFX.
 
 Versão básica com funções de (via interface gráfica): (1) CRUD de Devedor, Divida, Endereço. (2) Busca inteligente por Devedor. (3) Negociar divida do Devedor - dividindo em Parcelas. (4) Acompanhar pagamento da Divida via Negociação. (5) Receber e cancelar recebimento do valor das Parcelas.
 
-Link para download do executável: http://encurtador.com.br/uxBM1
+Link para download do executável: http://bit.ly/2k7EcC6
 
 Requisitos necessários: Basicamente, ter o Java 8 instalado e um display maior de 800x600 pixels.
 
